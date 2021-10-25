@@ -6,7 +6,7 @@ pipeline{
    stages{
      stage('SCM Chekout'){
         steps{
-         git 'https://github.com/maritox09/ventas/'
+           git branch: 'ventasQA', url: 'https://github.com/maritox09/ventas/'
         }
      }
       stage('Compile-Package'){
@@ -23,7 +23,7 @@ pipeline{
      }
      stage('Deploy container'){
         steps{
-           deploy adapters: [tomcat9(credentialsId: '999', path: '', url: 'http://192.168.5.193:8086/')], contextPath: '/rps', war: '**/*.war'
+           deploy adapters: [tomcat9(credentialsId: '999', path: '', url: 'http://192.168.5.193:8087/')], contextPath: '/rps', war: '**/*.war'
         }
      }
    }
