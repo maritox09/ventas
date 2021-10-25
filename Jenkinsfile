@@ -11,7 +11,7 @@ pipeline{
      }
       stage('Compile-Package'){
         steps{
-         sh 'mvn package'
+         sh 'mvn clean package'
         }
      }
      stage('SonarQube.Analysis'){
@@ -24,6 +24,7 @@ pipeline{
      stage('Deploy container'){
         steps{
            sh 'cd target'
+
            deploy adapters: [tomcat9(credentialsId: '999', path: '', url: 'http://192.168.5.193:8086/')], contextPath: 'rps', war: '**/*.war'
         }
      }
