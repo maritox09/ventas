@@ -7,7 +7,7 @@ def checkout = { String subFolder ->
                            ]],
             userRemoteConfigs: [[
                                         url : 'git@github.com:maritox09/ventas.git',
-                                        credentialsId: "maritox09"
+                                        credentialsId: "mario2"
                                 ]]
     ])
 }
