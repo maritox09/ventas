@@ -14,7 +14,7 @@
                 <div class="m-2">
                     <form action="Validar" method="POST">  
                         <div class="form-group text-center">
-                            <h3>Log In</h3>
+                            <h3>Inicio de sesion</h3>
                         </div>
                         <div class="form-group mt-3">
                             <label>Usuario:</label>
