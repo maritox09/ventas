@@ -9,6 +9,11 @@ pipeline{
          git 'https://github.com/maritox09/ventas'
         }
      }
+      stage('Compile-Package'){
+        steps{
+         sh 'mvn package'
+        }
+     }
      stage('SonarQube.Analysis'){
         steps{
            withSonarQubeEnv('sonarqube') {
