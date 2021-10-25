@@ -1,6 +1,10 @@
 def fallo = ''
 pipeline{
-   agent any
+   agent  {
+      node {
+        label 'principal'
+      }
+   }
    tools{
       maven 'Maven'
    }
