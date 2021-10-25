@@ -11,7 +11,7 @@ pipeline{
      }
       stage('Compile-Package'){
         steps{
-         sh 'mvn -f ./pom.xml package'
+         sh 'mvn clean package'
         }
      }
      stage('SonarQube.Analysis'){
