@@ -9,7 +9,7 @@ pipeline{
          git 'https://github.com/maritox09/ventas'
         }
      }
-      stage('Compile-Package'){
+     stage('Compile-Package'){
         steps{
          sh 'mvn clean package'
         }
@@ -25,7 +25,7 @@ pipeline{
         steps{
            sh 'cd target'
 
-           deploy adapters: [tomcat9(credentialsId: '999', path: '', url: 'http://192.168.5.193:8086/')], contextPath: 'rps', war: '**/*.war'
+           deploy adapters: [tomcat9(credentialsId: '999', path: '', url: 'http://192.168.5.193:8888/')], contextPath: 'rps', war: '**/*.war'
         }
      }
    }
