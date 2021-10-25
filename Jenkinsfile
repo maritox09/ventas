@@ -1,3 +1,17 @@
+def checkout = { String subFolder ->
+    checkout([
+            $class      : "GitSCM",
+            branches    : [[name: "*/main"]],
+            extensions  : [[ $class: "RelativeTargetDirectory",
+                             relativeTargetDir: subFolder
+                           ]],
+            userRemoteConfigs: [[
+                                        url : 'git@github.com:maritox09/ventas.git',
+                                        credentialsId: "maritox09"
+                                ]]
+    ])
+}
+
 def runner = { commandToExecute -> isUnix() ? sh(commandToExecute) : bat(commandToExecute) }
 
 UnitTest:{
