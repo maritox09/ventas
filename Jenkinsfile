@@ -11,9 +11,16 @@ pipeline{
       }
       stage('Compile-Package'){
         steps{
-         sh 'mvn package'
+         sh 'mvn clean package'
         }
      }
+     stage('SonarQube.Analysis'){
+        steps{
+           withSonarQubeEnv('sonarqube') {
+              sh "mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=chema10"
+            }
+        }
+    }
      stage('Deploy container'){
         steps{
            sh 'cd target'
