@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ClienteRepository.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SistemaVentas</a> &gt; <a href="index.source.html" class="el_package">Modelo</a> &gt; <span class="el_source">ClienteRepository.java</span></div><h1>ClienteRepository.java</h1><pre class="source lang-java linenums">package Modelo;
+
+import java.util.ArrayList;
+import java.util.List;
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.Unirest;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+
+<span class="nc" id="L11">public class ClienteRepository {</span>
+
+    public List&lt;Cliente&gt; clientes() throws Exception {
+
+<span class="nc" id="L15">        Unirest.setTimeouts(0, 0);</span>
+<span class="nc" id="L16">        HttpResponse&lt;String&gt; response = Unirest.get(&quot;http://ventas.falcorp.net:8080/PrimerSistema/api/clientes&quot;).asString();</span>
+
+<span class="nc" id="L18">        List&lt;Cliente&gt; clientes=new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L19">        JSONArray json = new JSONArray(response.getBody());</span>
+<span class="nc bnc" id="L20" title="All 2 branches missed.">        for (int i=0;i&lt;json.length(); i++){</span>
+<span class="nc" id="L21">            Cliente cliente = new Cliente();</span>
+<span class="nc" id="L22">            JSONObject jsonObject = json.getJSONObject(i);</span>
+<span class="nc" id="L23">            cliente.setId(jsonObject.getInt(&quot;id&quot;));</span>
+<span class="nc" id="L24">            cliente.setNombre(jsonObject.getString(&quot;nombre&quot;));</span>
+<span class="nc" id="L25">            cliente.setNit(jsonObject.getInt(&quot;nit&quot;));</span>
+<span class="nc" id="L26">            cliente.setCorreo(jsonObject.getString(&quot;email&quot;));</span>
+<span class="nc" id="L27">            cliente.setCelular(jsonObject.getInt(&quot;telefono&quot;));</span>
+<span class="nc" id="L28">            cliente.setSuscripcion(jsonObject.getInt(&quot;suscripcion&quot;));</span>
+<span class="nc" id="L29">            cliente.setPatente(jsonObject.getString(&quot;patente&quot;));</span>
+
+<span class="nc" id="L31">            clientes.add(cliente);</span>
+        }
+
+<span class="nc" id="L34">        return clientes;</span>
+
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Venta.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SistemaVentas</a> &gt; <a href="index.source.html" class="el_package">Modelo</a> &gt; <span class="el_source">Venta.java</span></div><h1>Venta.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Modelo;
+
+/**
+ * Clase Venta
+ * Contiene la entidad Venta correspondiente al registro de datos de cada venta realizada por el sistema de ventas
+ */
+public class Venta {
+    int id;
+    int item;
+    int idCliente;
+    int idEmpleado;
+    int idProducto;
+    String descripcion;
+    String fecha;
+    double precio;
+    int cantidad;
+    double subtotal;
+    double monto;
+    int estado;
+    int encargo;
+
+<span class="nc" id="L27">    public Venta() {</span>
+<span class="nc" id="L28">    };</span>
+
+    /**
+     * Constructor de la clase
+     */
+<span class="nc" id="L33">    public Venta(int id, int item, int idCliente, int idEmpleado, int idProducto, String descripción, String fecha, double precio, int cantidad, double subtotal, double monto, int estado, int encargo) {</span>
+<span class="nc" id="L34">        this.id = id;</span>
+<span class="nc" id="L35">        this.item = item;</span>
+<span class="nc" id="L36">        this.idCliente = idCliente;</span>
+<span class="nc" id="L37">        this.idEmpleado = idEmpleado;</span>
+<span class="nc" id="L38">        this.idProducto = idProducto;</span>
+<span class="nc" id="L39">        this.descripcion = descripcion;</span>
+<span class="nc" id="L40">        this.fecha = fecha;</span>
+<span class="nc" id="L41">        this.precio = precio;</span>
+<span class="nc" id="L42">        this.cantidad = cantidad;</span>
+<span class="nc" id="L43">        this.subtotal = subtotal;</span>
+<span class="nc" id="L44">        this.monto = monto;</span>
+<span class="nc" id="L45">        this.estado = estado;</span>
+<span class="nc" id="L46">        this.encargo = encargo;</span>
+<span class="nc" id="L47">    }</span>
+
+    /**
+     * Metodos getters y setters
+     */
+    public int getId() {
+<span class="nc" id="L53">        return id;</span>
+    }
+
+    public void setId(int id) {
+<span class="nc" id="L57">        this.id = id;</span>
+<span class="nc" id="L58">    }</span>
+
+    public int getItem() {
+<span class="nc" id="L61">        return item;</span>
+    }
+
+    public void setItem(int item) {
+<span class="nc" id="L65">        this.item = item;</span>
+<span class="nc" id="L66">    }</span>
+
+    public int getIdCliente() {
+<span class="nc" id="L69">        return idCliente;</span>
+    }
+
+    public void setIdCliente(int idCliente) {
+<span class="nc" id="L73">        this.idCliente = idCliente;</span>
+<span class="nc" id="L74">    }</span>
+
+    public int getIdEmpleado() {
+<span class="nc" id="L77">        return idEmpleado;</span>
+    }
+
+    public void setIdEmpleado(int idEmpleado) {
+<span class="nc" id="L81">        this.idEmpleado = idEmpleado;</span>
+<span class="nc" id="L82">    }</span>
+
+    public int getIdProducto() {
+<span class="nc" id="L85">        return idProducto;</span>
+    }
+
+    public void setIdProducto(int idProducto) {
+<span class="nc" id="L89">        this.idProducto = idProducto;</span>
+<span class="nc" id="L90">    }</span>
+
+    public String getDescripcion() {
+<span class="nc" id="L93">        return descripcion;</span>
+    }
+
+    public void setDescripcion(String descripción) {
+<span class="nc" id="L97">        this.descripcion = descripción;</span>
+<span class="nc" id="L98">    }</span>
+
+    public String getFecha() {
+<span class="nc" id="L101">        return fecha;</span>
+    }
+
+    public void setFecha(String fecha) {
+<span class="nc" id="L105">        this.fecha = fecha;</span>
+<span class="nc" id="L106">    }</span>
+
+    public double getPrecio() {
+<span class="nc" id="L109">        return precio;</span>
+    }
+
+    public void setPrecio(double precio) {
+<span class="nc" id="L113">        this.precio = precio;</span>
+<span class="nc" id="L114">    }</span>
+
+    public int getCantidad() {
+<span class="nc" id="L117">        return cantidad;</span>
+    }
+
+    public void setCantidad(int cantidad) {
+<span class="nc" id="L121">        this.cantidad = cantidad;</span>
+<span class="nc" id="L122">    }</span>
+
+    public double getSubtotal() {
+<span class="nc" id="L125">        return subtotal;</span>
+    }
+
+    public void setSubtotal(double subtotal) {
+<span class="nc" id="L129">        this.subtotal = subtotal;</span>
+<span class="nc" id="L130">    }</span>
+
+    public double getMonto() {
+<span class="nc" id="L133">        return monto;</span>
+    }
+
+    public void setMonto(double monto) {
+<span class="nc" id="L137">        this.monto = monto;</span>
+<span class="nc" id="L138">    }</span>
+
+    public int getEstado() {
+<span class="nc" id="L141">        return estado;</span>
+    }
+
+    public void setEstado(int estado) {
+<span class="nc" id="L145">        this.estado = estado;</span>
+<span class="nc" id="L146">    }</span>
+
+    public int getEncargo() {
+<span class="nc" id="L149">        return encargo;</span>
+    }
+
+    public void setEncargo(int encargo) {
+<span class="nc" id="L153">        this.encargo = encargo;</span>
+<span class="nc" id="L154">    }</span>
+
+    @Override
+    public String toString() {
+<span class="nc" id="L158">        return &quot;Venta{&quot; +</span>
+<span class="nc" id="L159">                &quot;id=&quot; + id +</span>
+<span class="nc" id="L160">                &quot;, item=&quot; + item +</span>
+<span class="nc" id="L161">                &quot;, idCliente=&quot; + idCliente +</span>
+<span class="nc" id="L162">                &quot;, idEmpleado=&quot; + idEmpleado +</span>
+<span class="nc" id="L163">                &quot;, idProducto=&quot; + idProducto +</span>
+<span class="nc" id="L164">                &quot;, descripción='&quot; + descripcion + '\'' +</span>
+<span class="nc" id="L165">                &quot;, fecha='&quot; + fecha + '\'' +</span>
+<span class="nc" id="L166">                &quot;, precio=&quot; + precio +</span>
+<span class="nc" id="L167">                &quot;, cantidad=&quot; + cantidad +</span>
+<span class="nc" id="L168">                &quot;, subtotal=&quot; + subtotal +</span>
+<span class="nc" id="L169">                &quot;, monto=&quot; + monto +</span>
+<span class="nc" id="L170">                &quot;, estado=&quot; + estado +</span>
+<span class="nc" id="L171">                &quot;, encargo=&quot; + encargo +</span>
+<span class="nc" id="L172">                '}';</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

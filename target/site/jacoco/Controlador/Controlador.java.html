@@ -1,0 +1,809 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Controlador.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SistemaVentas</a> &gt; <a href="index.source.html" class="el_package">Controlador</a> &gt; <span class="el_source">Controlador.java</span></div><h1>Controlador.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Controlador;
+
+import Modelo.*;
+
+
+import java.io.IOException;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ *
+ * @author josue
+ */
+<span class="nc" id="L24">public class Controlador extends HttpServlet {</span>
+
+
+<span class="nc" id="L27">    Empleado em= new Empleado();</span>
+<span class="nc" id="L28">    Marca mr= new Marca();</span>
+<span class="nc" id="L29">    EmpleadoDAO edao= new EmpleadoDAO();</span>
+<span class="nc" id="L30">    MarcaDAO mdao=new MarcaDAO();</span>
+<span class="nc" id="L31">    Cliente cl=new Cliente();</span>
+<span class="nc" id="L32">    ClienteDAO cdao= new ClienteDAO();</span>
+<span class="nc" id="L33">    Producto pro= new Producto();</span>
+<span class="nc" id="L34">    ProductoDAO pdao= new ProductoDAO();</span>
+<span class="nc" id="L35">    Cliente c =new Cliente();</span>
+<span class="nc" id="L36">    Inventario i =new Inventario();</span>
+<span class="nc" id="L37">    InventarioDAO idao=new InventarioDAO();</span>
+<span class="nc" id="L38">    Pedido p=new Pedido();</span>
+<span class="nc" id="L39">    PedidoDAO pedao= new PedidoDAO();</span>
+<span class="nc" id="L40">    Fabrica f = new Fabrica();</span>
+<span class="nc" id="L41">    FabricaDAO fdao=new FabricaDAO();</span>
+<span class="nc" id="L42">    DetalleVenta d = new DetalleVenta();</span>
+<span class="nc" id="L43">    DetalleVentaDAO ddao=new DetalleVentaDAO();</span>
+    int ide;
+    int idp;
+    int idc;
+    int idm;
+    int idi;
+<span class="nc" id="L49">    Venta v=new Venta();</span>
+<span class="nc" id="L50">    VentaDAO vdao = new VentaDAO();</span>
+<span class="nc" id="L51">    List&lt;Venta&gt;lista=new ArrayList&lt;&gt;();</span>
+    int item;
+    int cod;
+    int cant;
+    double precio;
+    String descripc;
+    double subtotal;
+    double total;
+<span class="nc" id="L59">    PedidoRepository repoPedido= new PedidoRepository();</span>
+
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+<span class="nc" id="L64">        String menu=request.getParameter(&quot;menu&quot;);</span>
+<span class="nc" id="L65">        String accion=request.getParameter(&quot;accion&quot;);      </span>
+
+<span class="nc bnc" id="L67" title="All 2 branches missed.">        if(menu.equals(&quot;Principal&quot;)){</span>
+<span class="nc" id="L68">           request.getRequestDispatcher(&quot;Principal.jsp&quot;).forward(request, response);</span>
+        }
+<span class="nc bnc" id="L70" title="All 2 branches missed.">        if(menu.equals(&quot;Home&quot;)){</span>
+<span class="nc" id="L71">           request.getRequestDispatcher(&quot;Home.jsp&quot;).forward(request, response);</span>
+        }
+<span class="nc bnc" id="L73" title="All 2 branches missed.">        if(menu.equals(&quot;Prueba&quot;)){</span>
+<span class="nc" id="L74">           request.getRequestDispatcher(&quot;login.jsp&quot;).forward(request, response);</span>
+        }
+        
+<span class="nc bnc" id="L77" title="All 2 branches missed.">        if(menu.equals(&quot;Empleado&quot;)){</span>
+<span class="nc bnc" id="L78" title="All 6 branches missed.">                switch(accion){</span>
+                    case &quot;Listar&quot;:
+<span class="nc" id="L80">                        List lista=edao.listar();</span>
+<span class="nc" id="L81">                        request.setAttribute(&quot;empleados&quot;, lista);</span>
+<span class="nc" id="L82">                        break;</span>
+
+                    case &quot;Agregar&quot;:
+<span class="nc" id="L85">                        String nombre=request.getParameter(&quot;nombre&quot;);</span>
+<span class="nc" id="L86">                        String correo=request.getParameter(&quot;correo&quot;);</span>
+<span class="nc" id="L87">                        String pass=request.getParameter(&quot;pass&quot;);</span>
+<span class="nc" id="L88">                        String rango=request.getParameter(&quot;tipo&quot;);</span>
+<span class="nc" id="L89">                        int tipo=1;</span>
+<span class="nc bnc" id="L90" title="All 3 branches missed.">                        switch(rango){</span>
+                           case &quot;Administrador&quot;:
+<span class="nc" id="L92">                             tipo=2;</span>
+<span class="nc" id="L93">                             break;</span>
+                           case &quot;Vendedor&quot;:
+<span class="nc" id="L95">                             tipo=1;</span>
+<span class="nc" id="L96">                             break;</span>
+                          default:
+<span class="nc" id="L98">                             tipo=1;</span>
+                         }
+<span class="nc" id="L100">                        em.setNombre(nombre);</span>
+<span class="nc" id="L101">                        em.setCorreo(correo);</span>
+<span class="nc" id="L102">                        em.setPass(pass);</span>
+<span class="nc" id="L103">                        em.setTipo(tipo);</span>
+<span class="nc" id="L104">                        edao.agregar(em);</span>
+<span class="nc" id="L105">                        request.getRequestDispatcher(&quot;Controlador?menu=Empleado&amp;accion=Listar&quot;).forward(request, response);</span>
+<span class="nc" id="L106">                        break;</span>
+
+                    case &quot;Editar&quot;:
+<span class="nc" id="L109">                        ide=Integer.parseInt(request.getParameter(&quot;id&quot;));</span>
+<span class="nc" id="L110">                        Empleado e=edao.listarId(ide);</span>
+<span class="nc" id="L111">                        request.setAttribute(&quot;datosE&quot;, e);</span>
+<span class="nc" id="L112">                        request.getRequestDispatcher(&quot;Controlador?menu=Empleado&amp;accion=Listar&quot;).forward(request, response);</span>
+<span class="nc" id="L113">                        break;</span>
+
+                     case &quot;Actualizar&quot;:
+<span class="nc" id="L116">                        String nombre1=request.getParameter(&quot;nombre&quot;);</span>
+<span class="nc" id="L117">                        String correo1=request.getParameter(&quot;correo&quot;);</span>
+<span class="nc" id="L118">                        String pass1=request.getParameter(&quot;pass&quot;);</span>
+<span class="nc" id="L119">                        String rango1=request.getParameter(&quot;tipo&quot;);</span>
+<span class="nc" id="L120">                        int tipo1=1;</span>
+<span class="nc bnc" id="L121" title="All 3 branches missed.">                        switch(rango1){</span>
+                           case &quot;Administrador&quot;:
+<span class="nc" id="L123">                             tipo1=2;</span>
+<span class="nc" id="L124">                             break;</span>
+                           case &quot;Vendedor&quot;:
+<span class="nc" id="L126">                             tipo1=1;</span>
+<span class="nc" id="L127">                             break;</span>
+                          default:
+<span class="nc" id="L129">                             tipo1=1;</span>
+                         }
+<span class="nc" id="L131">                        em.setNombre(nombre1);</span>
+<span class="nc" id="L132">                        em.setCorreo(correo1);</span>
+<span class="nc" id="L133">                        em.setPass(pass1);</span>
+<span class="nc" id="L134">                        em.setTipo(tipo1);</span>
+<span class="nc" id="L135">                        em.setId(ide);</span>
+<span class="nc" id="L136">                        edao.actualizar(em);</span>
+<span class="nc" id="L137">                        request.getRequestDispatcher(&quot;Controlador?menu=Empleado&amp;accion=Listar&quot;).forward(request, response);</span>
+<span class="nc" id="L138">                        break;</span>
+
+                    case &quot;Delete&quot;:
+<span class="nc" id="L141">                        ide=Integer.parseInt(request.getParameter(&quot;id&quot;));</span>
+<span class="nc" id="L142">                        edao.delete(ide);</span>
+<span class="nc" id="L143">                        request.getRequestDispatcher(&quot;Controlador?menu=Empleado&amp;accion=Listar&quot;).forward(request, response);</span>
+<span class="nc" id="L144">                        break;</span>
+                    default:
+<span class="nc" id="L146">                        throw new AssertionError();</span>
+                }
+<span class="nc" id="L148">            request.getRequestDispatcher(&quot;Empleado.jsp&quot;).forward(request, response);</span>
+        }
+        
+        
+        
+<span class="nc bnc" id="L153" title="All 2 branches missed.">        if(menu.equals(&quot;Cliente&quot;)){</span>
+<span class="nc bnc" id="L154" title="All 6 branches missed.">            switch(accion){</span>
+                case &quot;Listar&quot;:
+
+                    try {
+<span class="nc" id="L158">                        request.setAttribute(&quot;clientes&quot;,new ClienteRepository().clientes());</span>
+<span class="nc" id="L159">                    } catch (Exception e) {</span>
+<span class="nc" id="L160">                        e.printStackTrace();</span>
+                    }
+<span class="nc" id="L162">                    break;</span>
+                 case &quot;Agregar&quot;:
+<span class="nc" id="L164">                        int id=Integer.parseInt(request.getParameter(&quot;id&quot;));</span>
+<span class="nc" id="L165">                        String nombre=request.getParameter(&quot;nombre&quot;);</span>
+<span class="nc" id="L166">                        int nit=Integer.parseInt(request.getParameter(&quot;nit&quot;));</span>
+<span class="nc" id="L167">                        String correo=request.getParameter(&quot;correo&quot;);</span>
+<span class="nc" id="L168">                        int celular=Integer.parseInt(request.getParameter(&quot;celular&quot;));</span>
+<span class="nc" id="L169">                        String suscripcion=request.getParameter(&quot;suscripcion&quot;);</span>
+<span class="nc" id="L170">                        String patente=request.getParameter(&quot;patente&quot;);</span>
+<span class="nc" id="L171">                        int tipo=1;</span>
+<span class="nc bnc" id="L172" title="All 3 branches missed.">                        switch(suscripcion){</span>
+                           case &quot;Mayorista&quot;:
+<span class="nc" id="L174">                             tipo=1;</span>
+<span class="nc" id="L175">                             break;</span>
+                           case &quot;Distribuidor&quot;:
+<span class="nc" id="L177">                             tipo=2;</span>
+<span class="nc" id="L178">                             break;</span>
+                          default:
+<span class="nc" id="L180">                             tipo=1;</span>
+                         }
+<span class="nc" id="L182">                        cl.setId(id);</span>
+<span class="nc" id="L183">                        cl.setNombre(nombre);</span>
+<span class="nc" id="L184">                        cl.setNit(nit);</span>
+<span class="nc" id="L185">                        cl.setCorreo(correo);</span>
+<span class="nc" id="L186">                        cl.setCelular(celular);</span>
+<span class="nc" id="L187">                        cl.setSuscripcion(tipo);</span>
+<span class="nc" id="L188">                        cl.setPatente(patente);</span>
+<span class="nc" id="L189">                        cdao.agregar(cl);</span>
+<span class="nc" id="L190">                        request.getRequestDispatcher(&quot;Controlador?menu=Cliente&amp;accion=Listar&quot;).forward(request, response);</span>
+<span class="nc" id="L191">                        break;</span>
+                        
+                case &quot;Editar&quot;:
+<span class="nc" id="L194">                        idc=Integer.parseInt(request.getParameter(&quot;id&quot;));</span>
+<span class="nc" id="L195">                        Cliente c=cdao.listarId(idc);</span>
+<span class="nc" id="L196">                        request.setAttribute(&quot;datosC&quot;, c);</span>
+<span class="nc" id="L197">                        request.getRequestDispatcher(&quot;Controlador?menu=Cliente&amp;accion=Listar&quot;).forward(request, response);</span>
+<span class="nc" id="L198">                        break;</span>
+                case &quot;Actualizar&quot;:
+<span class="nc" id="L200">                        int id1=Integer.parseInt(request.getParameter(&quot;id&quot;));</span>
+<span class="nc" id="L201">                        String nombre1=request.getParameter(&quot;nombre&quot;);</span>
+<span class="nc" id="L202">                        int nit1=Integer.parseInt(request.getParameter(&quot;nit&quot;));</span>
+<span class="nc" id="L203">                        String correo1=request.getParameter(&quot;correo&quot;);</span>
+<span class="nc" id="L204">                        int celular1=Integer.parseInt(request.getParameter(&quot;celular&quot;));</span>
+<span class="nc" id="L205">                        String suscripcion1=request.getParameter(&quot;suscripcion&quot;);</span>
+<span class="nc" id="L206">                        String patente1=request.getParameter(&quot;patente&quot;);</span>
+<span class="nc" id="L207">                        int tipo1=1;</span>
+<span class="nc bnc" id="L208" title="All 3 branches missed.">                        switch(suscripcion1){</span>
+                           case &quot;Mayorista&quot;:
+<span class="nc" id="L210">                             tipo=1;</span>
+<span class="nc" id="L211">                             break;</span>
+                           case &quot;Distribuidor&quot;:
+<span class="nc" id="L213">                             tipo=2;</span>
+<span class="nc" id="L214">                             break;</span>
+                          default:
+<span class="nc" id="L216">                             tipo=1;</span>
+                         }
+<span class="nc" id="L218">                        cl.setId(id1);</span>
+<span class="nc" id="L219">                        cl.setNombre(nombre1);</span>
+<span class="nc" id="L220">                        cl.setNit(nit1);</span>
+<span class="nc" id="L221">                        cl.setCorreo(correo1);</span>
+<span class="nc" id="L222">                        cl.setCelular(celular1);</span>
+<span class="nc" id="L223">                        cl.setSuscripcion(tipo);</span>
+<span class="nc" id="L224">                        cl.setPatente(patente1);</span>
+<span class="nc" id="L225">                        cl.setId(idc);</span>
+<span class="nc" id="L226">                        cdao.actualizar(cl);</span>
+<span class="nc" id="L227">                        request.getRequestDispatcher(&quot;Controlador?menu=Cliente&amp;accion=Listar&quot;).forward(request, response);</span>
+<span class="nc" id="L228">                        break;</span>
+                case &quot;Delete&quot;:
+<span class="nc" id="L230">                        idc=Integer.parseInt(request.getParameter(&quot;id&quot;));</span>
+<span class="nc" id="L231">                        cdao.delete(idc);</span>
+<span class="nc" id="L232">                        request.getRequestDispatcher(&quot;Controlador?menu=Cliente&amp;accion=Listar&quot;).forward(request, response);</span>
+<span class="nc" id="L233">                        break;</span>
+                    default:
+<span class="nc" id="L235">                        throw new AssertionError();</span>
+            }
+<span class="nc" id="L237">           request.getRequestDispatcher(&quot;Clientes.jsp&quot;).forward(request, response);</span>
+        }
+        
+        
+        
+<span class="nc bnc" id="L242" title="All 2 branches missed.">        if(menu.equals(&quot;Producto&quot;)){</span>
+<span class="nc bnc" id="L243" title="All 6 branches missed.">            switch(accion){</span>
+                    case &quot;Listar&quot;:
+<span class="nc" id="L245">                            List lista=pdao.listar();</span>
+<span class="nc" id="L246">                            request.setAttribute(&quot;productos&quot;, lista);</span>
+<span class="nc" id="L247">                            List listam=mdao.listar();</span>
+<span class="nc" id="L248">                            request.setAttribute(&quot;marcas&quot;, listam);</span>
+<span class="nc" id="L249">                            List listaf=fdao.listar();</span>
+<span class="nc" id="L250">                            request.setAttribute(&quot;fabricas&quot;,listaf);</span>
+<span class="nc" id="L251">                        break;</span>
+                    case &quot;Agregar&quot;:
+<span class="nc" id="L253">                            int id=Integer.parseInt(request.getParameter(&quot;id&quot;));</span>
+<span class="nc" id="L254">                            String nombre=request.getParameter(&quot;nombre&quot;);</span>
+<span class="nc" id="L255">                            int precioL=Integer.parseInt(request.getParameter(&quot;precioL&quot;));</span>
+<span class="nc" id="L256">                            int memoria=Integer.parseInt(request.getParameter(&quot;memoria&quot;));</span>
+<span class="nc" id="L257">                            int almacenamiento=Integer.parseInt(request.getParameter(&quot;almacenamiento&quot;));</span>
+<span class="nc" id="L258">                            String procesador=request.getParameter(&quot;procesador&quot;);</span>
+<span class="nc" id="L259">                            int cores=Integer.parseInt(request.getParameter(&quot;cores&quot;));</span>
+<span class="nc" id="L260">                            String descripcion=request.getParameter(&quot;descripcion&quot;);</span>
+<span class="nc" id="L261">                            String color=request.getParameter(&quot;color&quot;);</span>
+<span class="nc" id="L262">                            String imagen1=request.getParameter(&quot;img1&quot;);</span>
+<span class="nc" id="L263">                            String imagen2=request.getParameter(&quot;img2&quot;);</span>
+<span class="nc" id="L264">                            String imagen3=request.getParameter(&quot;img3&quot;);</span>
+<span class="nc" id="L265">                            String marca=request.getParameter(&quot;marca&quot;);</span>
+<span class="nc" id="L266">                            String fabrica=request.getParameter(&quot;fabrica&quot;);</span>
+<span class="nc" id="L267">                            pro.setId(id);</span>
+<span class="nc" id="L268">                            pro.setNombre(nombre);</span>
+<span class="nc" id="L269">                            pro.setPrecioL(precioL);</span>
+<span class="nc" id="L270">                            pro.setMemoria(memoria);</span>
+<span class="nc" id="L271">                            pro.setAlmacenamiento(almacenamiento);</span>
+<span class="nc" id="L272">                            pro.setProcesador(procesador);</span>
+<span class="nc" id="L273">                            pro.setCores(cores);</span>
+<span class="nc" id="L274">                            pro.setDescripcion(descripcion);</span>
+<span class="nc" id="L275">                            pro.setColor(color);</span>
+<span class="nc" id="L276">                            pro.setImagen1(imagen1);</span>
+<span class="nc" id="L277">                            pro.setImagen2(imagen2);</span>
+<span class="nc" id="L278">                            pro.setImagen3(imagen3);</span>
+<span class="nc" id="L279">                            mr=mdao.buscarM(marca);</span>
+<span class="nc" id="L280">                            pro.setIdMarca(mr.getId());</span>
+<span class="nc" id="L281">                            f=fdao.buscarM(fabrica);</span>
+<span class="nc" id="L282">                            pro.setIdFabrica(f.getIdf());</span>
+<span class="nc" id="L283">                            pdao.agregar(pro);</span>
+<span class="nc" id="L284">                            pdao.agregarI(pro.getId());</span>
+<span class="nc" id="L285">                            request.getRequestDispatcher(&quot;Controlador?menu=Producto&amp;accion=Listar&quot;).forward(request, response); </span>
+<span class="nc" id="L286">                        break;</span>
+                    case &quot;Editar&quot;: 
+<span class="nc" id="L288">                        idp=Integer.parseInt(request.getParameter(&quot;id&quot;));</span>
+<span class="nc" id="L289">                        Producto p=pdao.listarId(idp);</span>
+<span class="nc" id="L290">                        request.setAttribute(&quot;datosP&quot;, p);</span>
+<span class="nc" id="L291">                        request.getRequestDispatcher(&quot;Controlador?menu=Producto&amp;accion=Listar&quot;).forward(request, response);</span>
+<span class="nc" id="L292">                        break;</span>
+                     case &quot;Actualizar&quot;: 
+<span class="nc" id="L294">                            int id1=Integer.parseInt(request.getParameter(&quot;id&quot;));</span>
+<span class="nc" id="L295">                            String nombre1=request.getParameter(&quot;nombre&quot;);</span>
+<span class="nc" id="L296">                            int precioL1=Integer.parseInt(request.getParameter(&quot;precioL&quot;));</span>
+<span class="nc" id="L297">                            int memoria1=Integer.parseInt(request.getParameter(&quot;memoria&quot;));</span>
+<span class="nc" id="L298">                            int almacenamiento1=Integer.parseInt(request.getParameter(&quot;almacenamiento&quot;));</span>
+<span class="nc" id="L299">                            String procesador1=request.getParameter(&quot;procesador&quot;);</span>
+<span class="nc" id="L300">                            int cores1=Integer.parseInt(request.getParameter(&quot;cores&quot;));</span>
+<span class="nc" id="L301">                            String descripcion1=request.getParameter(&quot;descripcion&quot;);</span>
+<span class="nc" id="L302">                            String color1=request.getParameter(&quot;color&quot;);</span>
+<span class="nc" id="L303">                            String imagen11=request.getParameter(&quot;img1&quot;);</span>
+<span class="nc" id="L304">                            String imagen21=request.getParameter(&quot;img2&quot;);</span>
+<span class="nc" id="L305">                            String imagen31=request.getParameter(&quot;img3&quot;);</span>
+<span class="nc" id="L306">                            String marca1=request.getParameter(&quot;marca&quot;);</span>
+<span class="nc" id="L307">                            int idfabrica=Integer.parseInt(request.getParameter(&quot;idfabrica&quot;));</span>
+<span class="nc" id="L308">                            pro.setId(id1);</span>
+<span class="nc" id="L309">                            pro.setNombre(nombre1);</span>
+<span class="nc" id="L310">                            pro.setPrecioL(precioL1);</span>
+<span class="nc" id="L311">                            pro.setMemoria(memoria1);</span>
+<span class="nc" id="L312">                            pro.setAlmacenamiento(almacenamiento1);</span>
+<span class="nc" id="L313">                            pro.setProcesador(procesador1);</span>
+<span class="nc" id="L314">                            pro.setCores(cores1);</span>
+<span class="nc" id="L315">                            pro.setDescripcion(descripcion1);</span>
+<span class="nc" id="L316">                            pro.setColor(color1);</span>
+<span class="nc" id="L317">                            pro.setImagen1(imagen11);</span>
+<span class="nc" id="L318">                            pro.setImagen2(imagen21);</span>
+<span class="nc" id="L319">                            pro.setImagen3(imagen31);</span>
+<span class="nc" id="L320">                            pro.setId(idp);</span>
+<span class="nc" id="L321">                            mr=mdao.buscarM(marca1);</span>
+<span class="nc" id="L322">                            pro.setIdMarca(mr.getId());</span>
+<span class="nc" id="L323">                            pro.setIdFabrica(idfabrica);</span>
+<span class="nc" id="L324">                            pdao.actualizar(pro);</span>
+<span class="nc" id="L325">                            request.getRequestDispatcher(&quot;Controlador?menu=Producto&amp;accion=Listar&quot;).forward(request, response);</span>
+<span class="nc" id="L326">                        break;</span>
+                    case &quot;Delete&quot;:
+<span class="nc" id="L328">                        idp=Integer.parseInt(request.getParameter(&quot;id&quot;));</span>
+<span class="nc" id="L329">                        pdao.delete(idp);</span>
+<span class="nc" id="L330">                        request.getRequestDispatcher(&quot;Controlador?menu=Producto&amp;accion=Listar&quot;).forward(request, response);</span>
+<span class="nc" id="L331">                        break;</span>
+                    default:
+<span class="nc" id="L333">                       throw new AssertionError();</span>
+            }
+            
+<span class="nc" id="L336">           request.getRequestDispatcher(&quot;Producto.jsp&quot;).forward(request, response);</span>
+        }
+        
+        
+        
+<span class="nc bnc" id="L341" title="All 2 branches missed.">        if(menu.equals(&quot;NuevaVenta&quot;)){</span>
+            
+<span class="nc bnc" id="L343" title="All 8 branches missed.">            switch(accion){</span>
+                case&quot;Listar&quot;:
+<span class="nc" id="L345">                    request.setAttribute(&quot;c&quot;, c);</span>
+<span class="nc" id="L346">                    request.setAttribute(&quot;total&quot;, total);</span>
+<span class="nc" id="L347">                    request.setAttribute(&quot;lista&quot;, lista);</span>
+<span class="nc" id="L348">                    break;</span>
+                case&quot;Buscar Cliente&quot;:
+<span class="nc" id="L350">                    int id=Integer.parseInt(request.getParameter(&quot;codigocliente&quot;));</span>
+<span class="nc" id="L351">                    cl.setId(id);</span>
+<span class="nc" id="L352">                    c =cdao.buscar(id);</span>
+<span class="nc" id="L353">                    request.setAttribute(&quot;c&quot;, c);</span>
+<span class="nc" id="L354">                    break;</span>
+                case&quot;Buscar Producto&quot;:
+<span class="nc" id="L356">                    int idP=Integer.parseInt(request.getParameter(&quot;codigoproducto&quot;));;</span>
+<span class="nc" id="L357">                    pro=pdao.listarId(idP);</span>
+<span class="nc" id="L358">                    request.setAttribute(&quot;c&quot;, c);</span>
+<span class="nc" id="L359">                    request.setAttribute(&quot;pro&quot;, pro);</span>
+<span class="nc" id="L360">                    System.out.println(pro.toString());</span>
+<span class="nc" id="L361">                    request.setAttribute(&quot;lista&quot;, lista);</span>
+<span class="nc" id="L362">                    request.setAttribute(&quot;total&quot;, total);</span>
+<span class="nc" id="L363">                    break;</span>
+                case&quot;Agregar&quot;:
+<span class="nc" id="L365">                    request.setAttribute(&quot;c&quot;, c);</span>
+<span class="nc" id="L366">                    int pos=0;</span>
+<span class="nc" id="L367">                    total =0.0;</span>
+<span class="nc" id="L368">                    cod=pro.getId();</span>
+<span class="nc" id="L369">                    descripc= request.getParameter(&quot;nombreproducto&quot;);</span>
+<span class="nc" id="L370">                    precio=Double.parseDouble(request.getParameter(&quot;precio&quot;));</span>
+<span class="nc" id="L371">                    cant= Integer.parseInt(request.getParameter(&quot;cantidad&quot;));</span>
+<span class="nc" id="L372">                    subtotal=precio*cant;</span>
+<span class="nc" id="L373">                    DecimalFormat formato1 = new DecimalFormat(&quot;#.##&quot;);</span>
+<span class="nc bnc" id="L374" title="All 2 branches missed.">                    if(lista.size()&gt;0){</span>
+<span class="nc bnc" id="L375" title="All 2 branches missed.">                        for(int i=0; i&lt;lista.size(); i++){</span>
+<span class="nc bnc" id="L376" title="All 2 branches missed.">                            if(cod==lista.get(i).getIdProducto()){</span>
+<span class="nc" id="L377">                                pos=i;</span>
+                            }
+                        }
+<span class="nc bnc" id="L380" title="All 2 branches missed.">                        if(cod==lista.get(pos).getIdProducto()){</span>
+<span class="nc" id="L381">                            cant=lista.get(pos).getCantidad()+cant;</span>
+<span class="nc" id="L382">                            double subtota=lista.get(pos).getPrecio()*cant;</span>
+<span class="nc" id="L383">                            lista.get(pos).setCantidad(cant);</span>
+<span class="nc" id="L384">                            lista.get(pos).setSubtotal(subtota);</span>
+<span class="nc bnc" id="L385" title="All 2 branches missed.">                            for(int i=0; i&lt;lista.size();i++){</span>
+<span class="nc" id="L386">                            total=total+lista.get(i).getSubtotal();</span>
+                            }
+<span class="nc" id="L388">                            total=total-(c.getDescuento()*total);</span>
+<span class="nc" id="L389">                            total=total+(total*0.17);</span>
+<span class="nc" id="L390">                            total = Math.round(total * 100.0) / 100.0;</span>
+                            
+<span class="nc" id="L392">                        }else{</span>
+<span class="nc" id="L393">                            item=item+1;</span>
+<span class="nc" id="L394">                            v=new Venta();</span>
+<span class="nc" id="L395">                            v.setItem(item);</span>
+<span class="nc" id="L396">                            v.setIdProducto(cod);</span>
+<span class="nc" id="L397">                            v.setDescripcion(descripc);</span>
+<span class="nc" id="L398">                            v.setPrecio(precio);</span>
+<span class="nc" id="L399">                            v.setCantidad(cant);</span>
+<span class="nc" id="L400">                            v.setSubtotal(subtotal);</span>
+<span class="nc" id="L401">                            lista.add(v);</span>
+<span class="nc bnc" id="L402" title="All 2 branches missed.">                            for(int i=0; i&lt;lista.size();i++){</span>
+<span class="nc" id="L403">                                total=total+lista.get(i).getSubtotal();</span>
+                        }
+<span class="nc" id="L405">                            total=total-(c.getDescuento()*total);   </span>
+<span class="nc" id="L406">                            total=total+(total*0.17);</span>
+<span class="nc" id="L407">                            total = Math.round(total * 100.0) / 100.0;</span>
+                        }
+<span class="nc" id="L409">                    }else{</span>
+<span class="nc" id="L410">                        item=item+1;</span>
+<span class="nc" id="L411">                        v=new Venta();</span>
+<span class="nc" id="L412">                        v.setItem(item);</span>
+<span class="nc" id="L413">                        v.setIdProducto(cod);</span>
+<span class="nc" id="L414">                        v.setDescripcion(descripc);</span>
+<span class="nc" id="L415">                        v.setPrecio(precio);</span>
+<span class="nc" id="L416">                        v.setCantidad(cant);</span>
+<span class="nc" id="L417">                        v.setSubtotal(subtotal);</span>
+<span class="nc" id="L418">                        lista.add(v);</span>
+<span class="nc bnc" id="L419" title="All 2 branches missed.">                        for(int i=0; i&lt;lista.size();i++){</span>
+<span class="nc" id="L420">                            total=total+lista.get(i).getSubtotal();</span>
+                        }
+<span class="nc" id="L422">                        total=total-(c.getDescuento()*total);</span>
+<span class="nc" id="L423">                        total=total+(total*0.17);</span>
+<span class="nc" id="L424">                        total = Math.round(total * 100.0) / 100.0;</span>
+                    }
+<span class="nc" id="L426">                    request.setAttribute(&quot;total&quot;, total);</span>
+<span class="nc" id="L427">                    request.setAttribute(&quot;lista&quot;, lista);</span>
+                    
+<span class="nc" id="L429">                    break;</span>
+                case&quot;GenerarVenta&quot;:
+<span class="nc" id="L431">                    v.setIdCliente(c.getId());</span>
+<span class="nc" id="L432">                    v.setIdEmpleado(2);</span>
+<span class="nc" id="L433">                    v.setFecha(&quot;2020-02-14&quot;);</span>
+<span class="nc" id="L434">                    v.setMonto(total);</span>
+<span class="nc" id="L435">                    v.setEstado(1);</span>
+                    int x;
+                    int credito;
+<span class="nc" id="L438">                    boolean venta=true;</span>
+<span class="nc bnc" id="L439" title="All 2 branches missed.">                    for(int i=0;i &lt;lista.size();i++){</span>
+<span class="nc" id="L440">                        int idpr=lista.get(i).getIdProducto();</span>
+<span class="nc" id="L441">                        int can=lista.get(i).getCantidad();</span>
+<span class="nc" id="L442">                        Producto proP =pdao.listarId(idpr);</span>
+<span class="nc bnc" id="L443" title="All 2 branches missed.">                        if(proP.getCantidad()&lt;can){</span>
+<span class="nc" id="L444">                            venta=false;</span>
+<span class="nc" id="L445">                            Cliente tipo =new Cliente();</span>
+<span class="nc" id="L446">                            tipo =cdao.buscar(v.getIdCliente());</span>
+<span class="nc bnc" id="L447" title="All 2 branches missed.">                            if(tipo.getSuscripcion()==2){</span>
+<span class="nc" id="L448">                                credito =can-proP.getCantidad();</span>
+<span class="nc" id="L449">                                p.setCantidad(credito);</span>
+<span class="nc" id="L450">                                p.setIdproducto(idpr);</span>
+<span class="nc" id="L451">                                pro=pdao.listarId(idpr);</span>
+                                try {
+<span class="nc" id="L453">                                    Fabrica fabrica1 = fdao.buscar(pro.getIdFabrica());</span>
+<span class="nc" id="L454">                                    String orden =repoPedido.hacerPedido(fabrica1.getDominio(),fabrica1.getUsuario(),fabrica1.getPass(),pro.getNombre(),credito);</span>
+<span class="nc" id="L455">                                    p.setNumeroOrden(orden);</span>
+<span class="nc" id="L456">                                    p.setIdfabrica(pro.getIdFabrica());</span>
+<span class="nc" id="L457">                                    pedao.agregar(p);</span>
+<span class="nc" id="L458">                                } catch (Exception e) {</span>
+<span class="nc" id="L459">                                    e.printStackTrace();</span>
+                                }
+
+<span class="nc" id="L462">                                lista.get(i).setCantidad(proP.getCantidad());</span>
+<span class="nc" id="L463">                                lista.get(i).setEncargo(credito);</span>
+<span class="nc" id="L464">                                venta=true;</span>
+                            }
+                        }
+                    }
+<span class="nc bnc" id="L468" title="All 2 branches missed.">                        if(venta){</span>
+<span class="nc" id="L469">                            vdao.guardarVenta(v);</span>
+<span class="nc" id="L470">                            int idv=vdao.Idventas();</span>
+<span class="nc" id="L471">                            request.setAttribute(&quot;num&quot;, idv);</span>
+<span class="nc bnc" id="L472" title="All 2 branches missed.">                            for(int i=0;i &lt;lista.size();i++){</span>
+<span class="nc bnc" id="L473" title="All 4 branches missed.">                            if(lista.get(i).getCantidad()!=0|| lista.get(i).getEncargo()!=0){</span>
+<span class="nc" id="L474">                            v= new Venta();</span>
+<span class="nc" id="L475">                            v.setId(idv);</span>
+<span class="nc" id="L476">                            v.setIdProducto(lista.get(i).getIdProducto());</span>
+<span class="nc" id="L477">                            v.setCantidad(lista.get(i).getCantidad());</span>
+<span class="nc" id="L478">                            v.setPrecio(lista.get(i).getPrecio());</span>
+<span class="nc bnc" id="L479" title="All 2 branches missed.">                            if(lista.get(i).getEncargo()!=0){</span>
+<span class="nc" id="L480">                                v.setEncargo(lista.get(i).getEncargo());</span>
+<span class="nc" id="L481">                                v.setEstado(2);</span>
+<span class="nc" id="L482">                            }else{</span>
+<span class="nc" id="L483">                             v.setEncargo(0);</span>
+<span class="nc" id="L484">                             v.setEstado(1);</span>
+                            }
+<span class="nc" id="L486">                            vdao.detalleVenta(v);</span>
+<span class="nc" id="L487">                                System.out.println(v);</span>
+                            }
+                        }   
+<span class="nc" id="L490">                            total=0;</span>
+<span class="nc" id="L491">                            lista.clear();</span>
+<span class="nc" id="L492">                            x=15;</span>
+<span class="nc" id="L493">                            request.setAttribute(&quot;avisoVenta&quot;, x);</span>
+                         
+<span class="nc" id="L495">                    }else{  </span>
+<span class="nc" id="L496">                                 total=0;</span>
+<span class="nc" id="L497">                                 lista.clear();</span>
+<span class="nc" id="L498">                                 x=5;</span>
+<span class="nc" id="L499">                                 request.setAttribute(&quot;avisoVenta&quot;, x);</span>
+                            
+                        }
+<span class="nc" id="L502">                    break;</span>
+                    
+                    case&quot;Cancelar&quot;:
+<span class="nc" id="L505">                    lista.clear();                   </span>
+<span class="nc" id="L506">                    break;</span>
+                    
+                    case&quot;Delete&quot;:
+<span class="nc" id="L509">                    request.setAttribute(&quot;c&quot;, c);</span>
+<span class="nc" id="L510">                    int idProducto=Integer.parseInt(request.getParameter(&quot;id&quot;));</span>
+<span class="nc bnc" id="L511" title="All 2 branches missed.">                    for(int i=0;i &lt;lista.size();i++){</span>
+<span class="nc bnc" id="L512" title="All 2 branches missed.">                        if(lista.get(i).getIdProducto()==idProducto){</span>
+<span class="nc" id="L513">                            lista.remove(i);</span>
+                        }
+                    }
+<span class="nc" id="L516">                    request.setAttribute(&quot;total&quot;, total);</span>
+<span class="nc" id="L517">                    request.setAttribute(&quot;lista&quot;, lista);</span>
+                default:
+                    
+                   
+            }
+
+<span class="nc" id="L523">           request.getRequestDispatcher(&quot;RegistrarVenta.jsp&quot;).forward(request, response);</span>
+        }
+        
+<span class="nc bnc" id="L526" title="All 2 branches missed.">        if(menu.equals(&quot;Marca&quot;)){</span>
+<span class="nc bnc" id="L527" title="All 6 branches missed.">            switch(accion){</span>
+                case &quot;Listar&quot;:
+<span class="nc" id="L529">                        List lista=mdao.listar();</span>
+<span class="nc" id="L530">                        request.setAttribute(&quot;marcas&quot;, lista);</span>
+<span class="nc" id="L531">                        break;</span>
+                 case &quot;Agregar&quot;:
+<span class="nc" id="L533">                        int id=Integer.parseInt(request.getParameter(&quot;id&quot;));</span>
+<span class="nc" id="L534">                        String nombre=request.getParameter(&quot;nombre&quot;);</span>
+<span class="nc" id="L535">                        String logo=request.getParameter(&quot;logo&quot;);</span>
+<span class="nc" id="L536">                        String descripcion=request.getParameter(&quot;descripcion&quot;);</span>
+<span class="nc" id="L537">                        mr.setId(id);</span>
+<span class="nc" id="L538">                        mr.setNombrem(nombre);</span>
+<span class="nc" id="L539">                        mr.setLogo(logo);</span>
+<span class="nc" id="L540">                        mr.setDescripcion(descripcion);</span>
+<span class="nc" id="L541">                        mdao.agregar(mr);</span>
+<span class="nc" id="L542">                        request.getRequestDispatcher(&quot;Controlador?menu=Marca&amp;accion=Listar&quot;).forward(request, response);</span>
+<span class="nc" id="L543">                        break;</span>
+                        
+                case &quot;Editar&quot;:
+<span class="nc" id="L546">                        idm=Integer.parseInt(request.getParameter(&quot;id&quot;));</span>
+<span class="nc" id="L547">                        Marca m=mdao.buscar(idm);</span>
+<span class="nc" id="L548">                        request.setAttribute(&quot;datosM&quot;, m);</span>
+<span class="nc" id="L549">                        request.getRequestDispatcher(&quot;Controlador?menu=Marca&amp;accion=Listar&quot;).forward(request, response);</span>
+<span class="nc" id="L550">                        break;</span>
+                case &quot;Actualizar&quot;:
+<span class="nc" id="L552">                        int id1=Integer.parseInt(request.getParameter(&quot;id&quot;));</span>
+<span class="nc" id="L553">                        String nombre1=request.getParameter(&quot;nombre&quot;);</span>
+<span class="nc" id="L554">                        String logo1=request.getParameter(&quot;logo&quot;);</span>
+<span class="nc" id="L555">                        String descripcion1=request.getParameter(&quot;descripcion&quot;);</span>
+<span class="nc" id="L556">                        mr.setId(id1);</span>
+<span class="nc" id="L557">                        mr.setNombrem(nombre1);</span>
+<span class="nc" id="L558">                        mr.setDescripcion(descripcion1);</span>
+<span class="nc" id="L559">                        mr.setLogo(logo1);</span>
+<span class="nc" id="L560">                        mdao.actualizar(mr);</span>
+<span class="nc" id="L561">                        request.getRequestDispatcher(&quot;Controlador?menu=Marca&amp;accion=Listar&quot;).forward(request, response);</span>
+<span class="nc" id="L562">                        break;</span>
+                case &quot;Delete&quot;:
+<span class="nc" id="L564">                        idm=Integer.parseInt(request.getParameter(&quot;id&quot;));</span>
+<span class="nc" id="L565">                        mdao.delete(idm);</span>
+<span class="nc" id="L566">                        request.getRequestDispatcher(&quot;Controlador?menu=Marca&amp;accion=Listar&quot;).forward(request, response);</span>
+                        break;
+                    default:
+            }
+<span class="nc" id="L570">          request.getRequestDispatcher(&quot;Marca.jsp&quot;).forward(request, response);</span>
+        }
+<span class="nc bnc" id="L572" title="All 2 branches missed.">        if(menu.equals(&quot;Fabrica&quot;)){</span>
+<span class="nc bnc" id="L573" title="All 6 branches missed.">            switch(accion){</span>
+                case &quot;Listar&quot;:
+<span class="nc" id="L575">                    List lista=fdao.listar();</span>
+<span class="nc" id="L576">                    request.setAttribute(&quot;fabricas&quot;, lista);</span>
+<span class="nc" id="L577">                    break;</span>
+                case &quot;Agregar&quot;:
+<span class="nc" id="L579">                    String nombre=request.getParameter(&quot;nombre&quot;);</span>
+<span class="nc" id="L580">                    String dominio=request.getParameter(&quot;dominio&quot;);</span>
+<span class="nc" id="L581">                    String usuario=request.getParameter(&quot;usuario&quot;);</span>
+<span class="nc" id="L582">                    String pass=request.getParameter(&quot;pass&quot;);</span>
+<span class="nc" id="L583">                    f.setNombref(nombre);</span>
+<span class="nc" id="L584">                    f.setDominio(dominio);</span>
+<span class="nc" id="L585">                    f.setUsuario(usuario);</span>
+<span class="nc" id="L586">                    f.setPass(pass);</span>
+<span class="nc" id="L587">                    fdao.agregar(f);</span>
+<span class="nc" id="L588">                    request.getRequestDispatcher(&quot;Controlador?menu=Fabrica&amp;accion=Listar&quot;).forward(request, response);</span>
+<span class="nc" id="L589">                    break;</span>
+
+                case &quot;Editar&quot;:
+<span class="nc" id="L592">                    idm=Integer.parseInt(request.getParameter(&quot;id&quot;));</span>
+<span class="nc" id="L593">                    Fabrica m=fdao.buscar(idm);</span>
+<span class="nc" id="L594">                    request.setAttribute(&quot;datosF&quot;, m);</span>
+<span class="nc" id="L595">                    request.getRequestDispatcher(&quot;Controlador?menu=Fabrica&amp;accion=Listar&quot;).forward(request, response);</span>
+<span class="nc" id="L596">                    break;</span>
+                case &quot;Actualizar&quot;:
+<span class="nc" id="L598">                    int id1=Integer.parseInt(request.getParameter(&quot;id&quot;));</span>
+<span class="nc" id="L599">                    String nombre1=request.getParameter(&quot;nombre&quot;);</span>
+<span class="nc" id="L600">                    String dominio1=request.getParameter(&quot;dominio&quot;);</span>
+<span class="nc" id="L601">                    String usuario1=request.getParameter(&quot;usuario&quot;);</span>
+<span class="nc" id="L602">                    f.setIdf(id1);</span>
+<span class="nc" id="L603">                    f.setNombref(nombre1);</span>
+<span class="nc" id="L604">                    f.setDominio(dominio1);</span>
+<span class="nc" id="L605">                    f.setUsuario(usuario1);</span>
+<span class="nc" id="L606">                    fdao.actualizar(f);</span>
+<span class="nc" id="L607">                    request.getRequestDispatcher(&quot;Controlador?menu=Fabrica&amp;accion=Listar&quot;).forward(request, response);</span>
+<span class="nc" id="L608">                    break;</span>
+                case &quot;Delete&quot;:
+<span class="nc" id="L610">                    idm=Integer.parseInt(request.getParameter(&quot;id&quot;));</span>
+<span class="nc" id="L611">                    fdao.delete(idm);</span>
+<span class="nc" id="L612">                    request.getRequestDispatcher(&quot;Controlador?menu=Fabrica&amp;accion=Listar&quot;).forward(request, response);</span>
+                    break;
+                default:
+            }
+<span class="nc" id="L616">            request.getRequestDispatcher(&quot;Fabrica.jsp&quot;).forward(request, response);</span>
+        }
+<span class="nc bnc" id="L618" title="All 2 branches missed.">        if(menu.equals(&quot;Venta&quot;)){</span>
+<span class="nc bnc" id="L619" title="All 2 branches missed.">            switch(accion){</span>
+                case &quot;Listar&quot;:
+<span class="nc" id="L621">                    List lista=vdao.listar();</span>
+<span class="nc" id="L622">                    request.setAttribute(&quot;ventas&quot;, lista);</span>
+                default:
+            }
+<span class="nc" id="L625">            request.getRequestDispatcher(&quot;Venta.jsp&quot;).forward(request, response);</span>
+        }
+<span class="nc bnc" id="L627" title="All 2 branches missed.">        if(menu.equals(&quot;Detalle&quot;)){</span>
+<span class="nc bnc" id="L628" title="All 3 branches missed.">            switch(accion){</span>
+                case &quot;Listar&quot;:
+<span class="nc" id="L630">                    idm=Integer.parseInt(request.getParameter(&quot;id&quot;));</span>
+<span class="nc" id="L631">                    List lista=ddao.listar(idm);</span>
+
+<span class="nc" id="L633">                    request.setAttribute(&quot;detalleventas&quot;, lista);</span>
+                case &quot;ActualizarEstado&quot;:
+<span class="nc" id="L635">                    idm=Integer.parseInt(request.getParameter(&quot;id&quot;));</span>
+<span class="nc" id="L636">                    ddao.actualizarEstado(idm,1);</span>
+<span class="nc" id="L637">                    lista=ddao.listar(idm);</span>
+
+<span class="nc" id="L639">                    request.setAttribute(&quot;detalleventas&quot;, lista);</span>
+                default:
+            }
+<span class="nc" id="L642">            request.getRequestDispatcher(&quot;DetalleVenta.jsp&quot;).forward(request, response);</span>
+        }
+
+<span class="nc bnc" id="L645" title="All 2 branches missed.">        if(menu.equals(&quot;Inventario&quot;)){</span>
+<span class="nc bnc" id="L646" title="All 3 branches missed.">            switch(accion){</span>
+                case &quot;Listar&quot;:
+<span class="nc" id="L648">                        List lista=idao.listar();</span>
+<span class="nc" id="L649">                        request.setAttribute(&quot;inventarios&quot;, lista);</span>
+<span class="nc" id="L650">                        break;</span>
+                    default:
+                case &quot;Editar&quot;: 
+<span class="nc" id="L653">                       idi=Integer.parseInt(request.getParameter(&quot;id&quot;));</span>
+<span class="nc" id="L654">                       Inventario i=idao.buscar(idi);</span>
+<span class="nc" id="L655">                       request.setAttribute(&quot;datosI&quot;, i);</span>
+<span class="nc" id="L656">                       request.getRequestDispatcher(&quot;Controlador?menu=Inventario&amp;accion=Listar&quot;).forward(request, response);</span>
+<span class="nc" id="L657">                       break;</span>
+                case &quot;Actualizar&quot;:
+<span class="nc" id="L659">                        Inventario in=new Inventario();</span>
+<span class="nc" id="L660">                        int id1=Integer.parseInt(request.getParameter(&quot;id&quot;));</span>
+<span class="nc" id="L661">                        int cantidad1=Integer.parseInt(request.getParameter(&quot;cantidad&quot;));</span>
+<span class="nc" id="L662">                        in.setId(id1);</span>
+<span class="nc" id="L663">                        in.setCantidad(cantidad1);</span>
+<span class="nc" id="L664">                        idao.actualizar(in);</span>
+<span class="nc" id="L665">                        request.getRequestDispatcher(&quot;Controlador?menu=Inventario&amp;accion=Listar&quot;).forward(request, response);</span>
+                        break;
+            }
+<span class="nc" id="L668">          request.getRequestDispatcher(&quot;Inventarios.jsp&quot;).forward(request, response);</span>
+        }
+<span class="nc bnc" id="L670" title="All 2 branches missed.">        if(menu.equals(&quot;Pedido&quot;)){</span>
+<span class="nc bnc" id="L671" title="All 6 branches missed.">            switch(accion){</span>
+                case &quot;Listar&quot;:
+
+<span class="nc" id="L674">                    List lista=pedao.listar();</span>
+<span class="nc" id="L675">                    request.setAttribute(&quot;pedidos&quot;, lista);</span>
+<span class="nc" id="L676">                    List fabricas = fdao.listar();</span>
+<span class="nc" id="L677">                    request.setAttribute(&quot;fabricas&quot;, fabricas);</span>
+
+<span class="nc" id="L679">                        break;</span>
+                case &quot;Listar Inventario&quot;:
+<span class="nc" id="L681">                    String nombre=request.getParameter(&quot;nombreF&quot;);</span>
+<span class="nc" id="L682">                    f=fdao.buscarM(nombre);</span>
+                    try {
+<span class="nc" id="L684">                        request.setAttribute(&quot;modelos&quot;,new PedidoRepository().inventarioFabrica(f.getDominio(),f.getUsuario(),f.getPass()));</span>
+<span class="nc" id="L685">                    } catch (Exception e) {</span>
+<span class="nc" id="L686">                        e.printStackTrace();</span>
+                    }
+<span class="nc" id="L688">                    List lista1=pedao.listar();</span>
+<span class="nc" id="L689">                    List fabricas1 = fdao.listar();</span>
+<span class="nc" id="L690">                    request.setAttribute(&quot;pedidos&quot;, lista1);</span>
+<span class="nc" id="L691">                    request.setAttribute(&quot;fabricas&quot;, fabricas1);</span>
+<span class="nc" id="L692">                    request.setAttribute(&quot;fabricaSeleecionada&quot;,nombre);</span>
+<span class="nc" id="L693">                    break;</span>
+                case &quot;Relizar Pedido&quot;:
+<span class="nc" id="L695">                        String fabrica = request.getParameter(&quot;nombreF&quot;);</span>
+<span class="nc" id="L696">                        String modelo=request.getParameter(&quot;modelo&quot;);</span>
+<span class="nc" id="L697">                        int cantidad=Integer.parseInt(request.getParameter(&quot;cantidad&quot;));</span>
+                         try {
+                             Producto prod;
+                             int id;
+                             int idF;
+<span class="nc" id="L702">                             prod= pdao.buscarM(modelo);</span>
+<span class="nc bnc" id="L703" title="All 2 branches missed.">                             if(prod.getId() == 0){</span>
+<span class="nc" id="L704">                                 id= pdao.Idproductos()+1;</span>
+<span class="nc" id="L705">                                 Producto nuevo = new Producto();</span>
+<span class="nc" id="L706">                                 nuevo=repoPedido.buscarModelo(modelo,fabrica);</span>
+<span class="nc" id="L707">                                 nuevo.setId(id);</span>
+<span class="nc" id="L708">                                 nuevo.setIdFabrica(fdao.buscarM(fabrica).getIdf());</span>
+<span class="nc" id="L709">                                 System.out.println(nuevo.toString());</span>
+<span class="nc bnc" id="L710" title="All 2 branches missed.">                                 if (mdao.buscarM(nuevo.getMarca()).getId()==0){</span>
+<span class="nc" id="L711">                                     mr.setId(mdao.Idmax()+1);</span>
+<span class="nc" id="L712">                                     mr.setLogo(&quot;https://www.google.com/url?sa=i&amp;url=https%3A%2F%2Fwww.designevo.com%2Fes%2Fcreate%2Flogos%2Fphone.html&amp;psig=AOvVaw1LEFaP9f6nmeh45igVZ2Qp&amp;ust=1619842825037000&amp;source=images&amp;cd=vfe&amp;ved=0CAIQjRxqFwoTCIDCyPSOpfACFQAAAAAdAAAAABAJ&quot;);</span>
+<span class="nc" id="L713">                                     mr.setDescripcion(&quot;Marca nueva, datos por corroborar&quot;);</span>
+<span class="nc" id="L714">                                     mr.setNombrem(nuevo.getMarca());</span>
+<span class="nc" id="L715">                                     mdao.agregar(mr);</span>
+                                 }
+<span class="nc" id="L717">                                 nuevo.setIdMarca(mdao.buscarM(nuevo.getMarca()).getId());</span>
+<span class="nc" id="L718">                                 pdao.agregar(nuevo);</span>
+                             }
+<span class="nc" id="L720">                                 id=prod.getId();</span>
+<span class="nc" id="L721">                                 idF=prod.getIdFabrica();</span>
+<span class="nc" id="L722">                                 p.setIdfabrica(idF);</span>
+<span class="nc" id="L723">                                 Fabrica fabrica1 = fdao.buscarM(fabrica);</span>
+<span class="nc" id="L724">                                 String orden =repoPedido.hacerPedido(fabrica1.getDominio(),fabrica1.getUsuario(),fabrica1.getPass(),modelo,cantidad);</span>
+<span class="nc" id="L725">                                 boolean envio = true;</span>
+<span class="nc" id="L726">                                 request.setAttribute(&quot;envio&quot;, envio);</span>
+<span class="nc" id="L727">                                 p.setIdproducto(id);</span>
+<span class="nc" id="L728">                                 p.setCantidad(cantidad);</span>
+<span class="nc" id="L729">                                 p.setNumeroOrden(orden);</span>
+<span class="nc" id="L730">                             System.out.println(p.toString());</span>
+<span class="nc" id="L731">                                 pedao.agregar(p);</span>
+
+<span class="nc" id="L733">                         } catch (Exception e) {</span>
+<span class="nc" id="L734">                             boolean envio = false;</span>
+<span class="nc" id="L735">                             request.setAttribute(&quot;envio&quot;, envio);</span>
+<span class="nc" id="L736">                             e.printStackTrace();</span>
+                         }
+<span class="nc" id="L738">                         request.getRequestDispatcher(&quot;Controlador?menu=Pedido&amp;accion=Listar&quot;).forward(request, response);</span>
+<span class="nc" id="L739">                        break;</span>
+                case &quot;Cancelar&quot;:
+<span class="nc" id="L741">                    int id=Integer.parseInt(request.getParameter(&quot;id&quot;));</span>
+<span class="nc" id="L742">                    String orden=request.getParameter(&quot;ordenId&quot;);</span>
+                    try {
+<span class="nc" id="L744">                        repoPedido.cancelarPedido(orden);</span>
+<span class="nc" id="L745">                        pedao.actualizarEstado(id,3);</span>
+<span class="nc" id="L746">                    } catch (Exception e) {</span>
+<span class="nc" id="L747">                        e.printStackTrace();</span>
+                    }
+<span class="nc" id="L749">                    request.getRequestDispatcher(&quot;Controlador?menu=Pedido&amp;accion=Listar&quot;).forward(request, response);</span>
+<span class="nc" id="L750">                    break;</span>
+                case &quot;Recibido&quot;:
+<span class="nc" id="L752">                    int id1=Integer.parseInt(request.getParameter(&quot;id&quot;));</span>
+<span class="nc" id="L753">                    Pedido pedido = new Pedido();</span>
+<span class="nc" id="L754">                    pedido=pedao.buscar(id1);</span>
+<span class="nc" id="L755">                    Inventario inventario = new Inventario();</span>
+<span class="nc" id="L756">                    inventario=idao.buscarXpro(pedido.getIdproducto());</span>
+<span class="nc" id="L757">                    int nuevaCantidad= inventario.getCantidad()+pedido.getCantidad();</span>
+<span class="nc" id="L758">                    inventario.setCantidad(nuevaCantidad);</span>
+<span class="nc" id="L759">                    idao.actualizar(inventario);</span>
+<span class="nc" id="L760">                    pedao.actualizarEstado(id1,4);</span>
+
+<span class="nc" id="L762">                    request.getRequestDispatcher(&quot;Controlador?menu=Pedido&amp;accion=Listar&quot;).forward(request, response);</span>
+                    break;
+            }
+<span class="nc" id="L765">          request.getRequestDispatcher(&quot;Pedidos.jsp&quot;).forward(request, response);</span>
+        }
+<span class="nc" id="L767">    }</span>
+
+    // &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;HttpServlet methods. Click on the + sign on the left to edit the code.&quot;&gt;
+    /**
+     * Handles the HTTP &lt;code&gt;GET&lt;/code&gt; method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+<span class="nc" id="L781">        processRequest(request, response);</span>
+<span class="nc" id="L782">    }</span>
+
+    /**
+     * Handles the HTTP &lt;code&gt;POST&lt;/code&gt; method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+<span class="nc" id="L795">        processRequest(request, response);</span>
+<span class="nc" id="L796">    }</span>
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+<span class="nc" id="L805">        return &quot;Short description&quot;;</span>
+    }// &lt;/editor-fold&gt;
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

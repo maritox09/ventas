@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Producto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SistemaVentas</a> &gt; <a href="index.source.html" class="el_package">Modelo</a> &gt; <span class="el_source">Producto.java</span></div><h1>Producto.java</h1><pre class="source lang-java linenums">
+package Modelo;
+
+/**
+ * Clase Producto
+ * Contiene la entidad Producto correspondiente al registro de datos de cada terminal para vender
+ */
+public class Producto {
+    int id;
+    String Nombre;
+    int precioL;
+    int memoria;
+    int almacenamiento;
+    String procesador;
+    int cores;
+    String descripcion;
+    String color;
+    Double precioV;
+    String imagen1;
+    String imagen2;
+    String imagen3;
+    int Cantidad;
+    int idMarca;
+    String marca;
+    int idFabrica;
+    String nombreFabrica;
+    
+<span class="nc" id="L28">        public Producto() {</span>
+<span class="nc" id="L29">    }</span>
+
+    /**
+     * Constructor de la clase
+     */
+<span class="nc" id="L34">    public Producto(int id, String nombre, int precioL, int memoria, int almacenamiento, String procesador, int cores, String descripcion, String color, Double precioV, String imagen1, String imagen2, String imagen3, int cantidad, int idMarca, String marca, int idFabrica, String nombreFabrica) {</span>
+<span class="nc" id="L35">        this.id = id;</span>
+<span class="nc" id="L36">        Nombre = nombre;</span>
+<span class="nc" id="L37">        this.precioL = precioL;</span>
+<span class="nc" id="L38">        this.memoria = memoria;</span>
+<span class="nc" id="L39">        this.almacenamiento = almacenamiento;</span>
+<span class="nc" id="L40">        this.procesador = procesador;</span>
+<span class="nc" id="L41">        this.cores = cores;</span>
+<span class="nc" id="L42">        this.descripcion = descripcion;</span>
+<span class="nc" id="L43">        this.color = color;</span>
+<span class="nc" id="L44">        this.precioV = precioV;</span>
+<span class="nc" id="L45">        this.imagen1 = imagen1;</span>
+<span class="nc" id="L46">        this.imagen2 = imagen2;</span>
+<span class="nc" id="L47">        this.imagen3 = imagen3;</span>
+<span class="nc" id="L48">        Cantidad = cantidad;</span>
+<span class="nc" id="L49">        this.idMarca = idMarca;</span>
+<span class="nc" id="L50">        this.marca = marca;</span>
+<span class="nc" id="L51">        this.idFabrica = idFabrica;</span>
+<span class="nc" id="L52">        this.nombreFabrica = nombreFabrica;</span>
+<span class="nc" id="L53">    }</span>
+
+    /**
+     * Metodos getters y setters
+     */
+    public int getId() {
+<span class="nc" id="L59">        return id;</span>
+    }
+
+    public void setId(int id) {
+<span class="nc" id="L63">        this.id = id;</span>
+<span class="nc" id="L64">    }</span>
+
+    public String getNombre() {
+<span class="nc" id="L67">        return Nombre;</span>
+    }
+
+    public void setNombre(String nombre) {
+<span class="nc" id="L71">        Nombre = nombre;</span>
+<span class="nc" id="L72">    }</span>
+
+    public int getPrecioL() {
+<span class="nc" id="L75">        return precioL;</span>
+    }
+
+    public void setPrecioL(int precioL) {
+<span class="nc" id="L79">        this.precioL = precioL;</span>
+<span class="nc" id="L80">    }</span>
+
+    public int getMemoria() {
+<span class="nc" id="L83">        return memoria;</span>
+    }
+
+    public void setMemoria(int memoria) {
+<span class="nc" id="L87">        this.memoria = memoria;</span>
+<span class="nc" id="L88">    }</span>
+
+    public int getAlmacenamiento() {
+<span class="nc" id="L91">        return almacenamiento;</span>
+    }
+
+    public void setAlmacenamiento(int almacenamiento) {
+<span class="nc" id="L95">        this.almacenamiento = almacenamiento;</span>
+<span class="nc" id="L96">    }</span>
+
+    public String getProcesador() {
+<span class="nc" id="L99">        return procesador;</span>
+    }
+
+    public void setProcesador(String procesador) {
+<span class="nc" id="L103">        this.procesador = procesador;</span>
+<span class="nc" id="L104">    }</span>
+
+    public int getCores() {
+<span class="nc" id="L107">        return cores;</span>
+    }
+
+    public void setCores(int cores) {
+<span class="nc" id="L111">        this.cores = cores;</span>
+<span class="nc" id="L112">    }</span>
+
+    public String getDescripcion() {
+<span class="nc" id="L115">        return descripcion;</span>
+    }
+
+    public void setDescripcion(String descripcion) {
+<span class="nc" id="L119">        this.descripcion = descripcion;</span>
+<span class="nc" id="L120">    }</span>
+
+    public String getColor() {
+<span class="nc" id="L123">        return color;</span>
+    }
+
+    public void setColor(String color) {
+<span class="nc" id="L127">        this.color = color;</span>
+<span class="nc" id="L128">    }</span>
+
+    public Double getPrecioV() {
+<span class="nc" id="L131">        return precioV;</span>
+    }
+
+    public void setPrecioV(Double precioV) {
+<span class="nc" id="L135">        this.precioV = precioV;</span>
+<span class="nc" id="L136">    }</span>
+
+    public String getImagen1() {
+<span class="nc" id="L139">        return imagen1;</span>
+    }
+
+    public void setImagen1(String imagen1) {
+<span class="nc" id="L143">        this.imagen1 = imagen1;</span>
+<span class="nc" id="L144">    }</span>
+
+    public String getImagen2() {
+<span class="nc" id="L147">        return imagen2;</span>
+    }
+
+    public void setImagen2(String imagen2) {
+<span class="nc" id="L151">        this.imagen2 = imagen2;</span>
+<span class="nc" id="L152">    }</span>
+
+    public String getImagen3() {
+<span class="nc" id="L155">        return imagen3;</span>
+    }
+
+    public void setImagen3(String imagen3) {
+<span class="nc" id="L159">        this.imagen3 = imagen3;</span>
+<span class="nc" id="L160">    }</span>
+
+    public int getCantidad() {
+<span class="nc" id="L163">        return Cantidad;</span>
+    }
+
+    public void setCantidad(int cantidad) {
+<span class="nc" id="L167">        Cantidad = cantidad;</span>
+<span class="nc" id="L168">    }</span>
+
+    public int getIdMarca() {
+<span class="nc" id="L171">        return idMarca;</span>
+    }
+
+    public void setIdMarca(int idMarca) {
+<span class="nc" id="L175">        this.idMarca = idMarca;</span>
+<span class="nc" id="L176">    }</span>
+
+    public String getMarca() {
+<span class="nc" id="L179">        return marca;</span>
+    }
+
+    public void setMarca(String marca) {
+<span class="nc" id="L183">        this.marca = marca;</span>
+<span class="nc" id="L184">    }</span>
+
+    public int getIdFabrica() {
+<span class="nc" id="L187">        return idFabrica;</span>
+    }
+
+    public void setIdFabrica(int idFabrica) {
+<span class="nc" id="L191">        this.idFabrica = idFabrica;</span>
+<span class="nc" id="L192">    }</span>
+
+    public String getNombreFabrica() {
+<span class="nc" id="L195">        return nombreFabrica;</span>
+    }
+
+    public void setNombreFabrica(String nombreFabrica) {
+<span class="nc" id="L199">        this.nombreFabrica = nombreFabrica;</span>
+<span class="nc" id="L200">    }</span>
+
+    @Override
+    public String toString() {
+<span class="nc" id="L204">        return &quot;Producto{&quot; +</span>
+<span class="nc" id="L205">                &quot;id=&quot; + id +</span>
+<span class="nc" id="L206">                &quot;, Nombre='&quot; + Nombre + '\'' +</span>
+<span class="nc" id="L207">                &quot;, precioL=&quot; + precioL +</span>
+<span class="nc" id="L208">                &quot;, memoria=&quot; + memoria +</span>
+<span class="nc" id="L209">                &quot;, almacenamiento=&quot; + almacenamiento +</span>
+<span class="nc" id="L210">                &quot;, procesador='&quot; + procesador + '\'' +</span>
+<span class="nc" id="L211">                &quot;, cores=&quot; + cores +</span>
+<span class="nc" id="L212">                &quot;, descripcion='&quot; + descripcion + '\'' +</span>
+<span class="nc" id="L213">                &quot;, color='&quot; + color + '\'' +</span>
+<span class="nc" id="L214">                &quot;, precioV=&quot; + precioV +</span>
+<span class="nc" id="L215">                &quot;, imagen1='&quot; + imagen1 + '\'' +</span>
+<span class="nc" id="L216">                &quot;, imagen2='&quot; + imagen2 + '\'' +</span>
+<span class="nc" id="L217">                &quot;, imagen3='&quot; + imagen3 + '\'' +</span>
+<span class="nc" id="L218">                &quot;, Cantidad=&quot; + Cantidad +</span>
+<span class="nc" id="L219">                &quot;, idMarca=&quot; + idMarca +</span>
+<span class="nc" id="L220">                &quot;, marca='&quot; + marca + '\'' +</span>
+<span class="nc" id="L221">                &quot;, idFabrica=&quot; + idFabrica +</span>
+<span class="nc" id="L222">                &quot;, nombreFabrica='&quot; + nombreFabrica + '\'' +</span>
+<span class="nc" id="L223">                '}';</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>
