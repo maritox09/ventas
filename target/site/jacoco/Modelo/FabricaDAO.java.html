@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FabricaDAO.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SistemaVentas</a> &gt; <a href="index.source.html" class="el_package">Modelo</a> &gt; <span class="el_source">FabricaDAO.java</span></div><h1>FabricaDAO.java</h1><pre class="source lang-java linenums">
+package Modelo;
+
+import Config.Conexion;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Clase FabricaDAO
+ * Contiene los metodos para acceder a la base de datos y aterrizarlos en la clase Fabrica
+ */
+<span class="nc" id="L16">public class FabricaDAO {</span>
+<span class="nc" id="L17">    Conexion cn = new Conexion();</span>
+       Connection con;
+       PreparedStatement ps;
+       ResultSet rs;
+       int respuesta;
+
+    /**
+     * Metodo para buscar un Fabrica por id
+     * @param id el id del Fabrica el cual se buscara en la base de datos
+     * @return Devuelve un Objeto Fabrica si lo encontró, de no encontrarlo un objeto Fabrica vacio
+     */
+        public Fabrica buscar(int id){
+<span class="nc" id="L29">            Fabrica f=new Fabrica();</span>
+<span class="nc" id="L30">           String sql =&quot;select * from fabricas where idf=&quot;+id;</span>
+           try{
+<span class="nc" id="L32">               con=cn.conexion();</span>
+<span class="nc" id="L33">               ps=con.prepareStatement(sql);</span>
+<span class="nc" id="L34">               rs= ps.executeQuery();</span>
+<span class="nc bnc" id="L35" title="All 2 branches missed.">               while(rs.next()){</span>
+<span class="nc" id="L36">                   f.setIdf(rs.getInt(&quot;idf&quot;));</span>
+<span class="nc" id="L37">                   f.setNombref(rs.getString(&quot;nombref&quot;));</span>
+<span class="nc" id="L38">                   f.setDominio(rs.getString(&quot;dominio&quot;));</span>
+<span class="nc" id="L39">                   f.setUsuario(rs.getString(&quot;usuario&quot;));</span>
+<span class="nc" id="L40">                   f.setPass(rs.getString(&quot;pass&quot;));</span>
+               }
+<span class="nc" id="L42">           }catch(Exception e){</span>
+               
+<span class="nc" id="L44">           }</span>
+<span class="nc" id="L45">           return f;</span>
+       }
+
+    /**
+     * Metodo para buscar un cliente por nombre
+     * @param nombre el nombre del Fabrica el cual se buscara en la base de datos
+     * @return Devuelve un Objeto Fabrica si lo encontró, de no encontrarlo un objeto Fabrica vacio
+     */
+        public Fabrica buscarM(String nombre){
+<span class="nc" id="L54">            Fabrica f=new Fabrica();</span>
+<span class="nc" id="L55">           String sql =&quot;select * from fabricas where nombref='&quot;+nombre+&quot;'&quot;;</span>
+           try{
+<span class="nc" id="L57">               con=cn.conexion();</span>
+<span class="nc" id="L58">               ps=con.prepareStatement(sql);</span>
+<span class="nc" id="L59">               rs= ps.executeQuery();</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">               while(rs.next()){</span>
+<span class="nc" id="L61">                   f.setIdf(rs.getInt(&quot;idf&quot;));</span>
+<span class="nc" id="L62">                   f.setNombref(rs.getString(&quot;nombref&quot;));</span>
+<span class="nc" id="L63">                   f.setDominio(rs.getString(&quot;dominio&quot;));</span>
+<span class="nc" id="L64">                   f.setUsuario(rs.getString(&quot;usuario&quot;));</span>
+<span class="nc" id="L65">                   f.setPass(rs.getString(&quot;pass&quot;));</span>
+               }
+<span class="nc" id="L67">           }catch(Exception e){</span>
+               
+<span class="nc" id="L69">           }</span>
+<span class="nc" id="L70">           return f;</span>
+       }
+
+    /**
+     * Metodo para listar todos los Fabrica
+     * @return Objeto Lista &lt;Fabrica&gt; con todos las Fabrica que se encontraron en la base de datos
+     */
+       public List listar(){
+<span class="nc" id="L78">           String sql= &quot;select * from fabricas&quot;;</span>
+<span class="nc" id="L79">           List&lt;Fabrica&gt; lista=new ArrayList&lt;&gt;();</span>
+           try{
+<span class="nc" id="L81">               con=cn.conexion();</span>
+<span class="nc" id="L82">               ps=con.prepareStatement(sql);</span>
+<span class="nc" id="L83">               rs= ps.executeQuery();</span>
+<span class="nc bnc" id="L84" title="All 2 branches missed.">               while(rs.next()){</span>
+<span class="nc" id="L85">                   Fabrica f = new Fabrica();</span>
+<span class="nc" id="L86">                   f.setIdf(rs.getInt(&quot;idf&quot;));</span>
+<span class="nc" id="L87">                   f.setNombref(rs.getString(&quot;nombref&quot;));</span>
+<span class="nc" id="L88">                   f.setDominio(rs.getString(&quot;dominio&quot;));</span>
+<span class="nc" id="L89">                   f.setUsuario(rs.getString(&quot;usuario&quot;));</span>
+<span class="nc" id="L90">                   f.setPass(rs.getString(&quot;pass&quot;));</span>
+<span class="nc" id="L91">                   lista.add(f);</span>
+<span class="nc" id="L92">               }</span>
+<span class="nc" id="L93">           }catch(Exception e){   </span>
+<span class="nc" id="L94">           }</span>
+<span class="nc" id="L95">           return lista;</span>
+       }
+
+    /**
+     * Metodo para agregar un Fabrica
+     * @param mr el objeto Fabrica el cual se agregara a la base de datos
+     * @return int respuesta, 1 al agregar exitosamente, 0 de lo contrario
+     */
+       public int agregar(Fabrica mr){
+<span class="nc" id="L104">           String sql=&quot;INSERT INTO fabricas VALUES (null,?,?,?,?)&quot;;</span>
+           
+            try{
+<span class="nc" id="L107">               con=cn.conexion();</span>
+<span class="nc" id="L108">               ps=con.prepareStatement(sql);</span>
+<span class="nc" id="L109">               ps.setString(1, mr.getNombref());</span>
+<span class="nc" id="L110">                ps.setString(2, mr.getDominio());</span>
+<span class="nc" id="L111">                ps.setString(3, mr.getUsuario());</span>
+<span class="nc" id="L112">                ps.setString(4, mr.getPass());</span>
+<span class="nc" id="L113">                ps.executeUpdate();</span>
+<span class="nc" id="L114">            }catch(Exception i){   </span>
+<span class="nc" id="L115">           }     </span>
+           
+<span class="nc" id="L117">           return respuesta;</span>
+       }
+
+    /**
+     * Metodo para actualizar un Fabrica
+     * @param mr el objeto Fabrica el cual tendra el id y los datos para actualizar el objeto en la base de datos
+     * @return int respuesta, 1 al actualizar exitosamente, 0 de lo contrario
+     */
+       public int actualizar(Fabrica mr){
+<span class="nc" id="L126">            String sql=&quot;UPDATE fabricas SET nombref=?, dominio=?, usuario=? where IDF=?&quot;;</span>
+           
+            try{
+<span class="nc" id="L129">               con=cn.conexion();</span>
+<span class="nc" id="L130">               ps=con.prepareStatement(sql);</span>
+<span class="nc" id="L131">               ps.setString(1, mr.getNombref());</span>
+<span class="nc" id="L132">               ps.setString(2, mr.getDominio());</span>
+<span class="nc" id="L133">               ps.setString(3, mr.getUsuario());</span>
+<span class="nc" id="L134">               ps.setInt(4, mr.getIdf());</span>
+<span class="nc" id="L135">               ps.executeUpdate();</span>
+<span class="nc" id="L136">            }catch(Exception i){   </span>
+<span class="nc" id="L137">           }     </span>
+           
+<span class="nc" id="L139">           return respuesta;</span>
+       }
+
+    /**
+     * Metodo para eliminar un Fabrica
+     * @param id id del registro que se borrara en la tabla Fabricas de base de datos
+     * @return int respuesta, 1 al eliminar exitosamente, 0 de lo contrario
+     */
+       public void delete(int id){
+<span class="nc" id="L148">           String sql =&quot;delete from fabricas where IDF=&quot;+id;</span>
+           try{
+<span class="nc" id="L150">               con=cn.conexion();</span>
+<span class="nc" id="L151">               ps=con.prepareStatement(sql);</span>
+<span class="nc" id="L152">               ps.executeUpdate();</span>
+<span class="nc" id="L153">            }catch(Exception e){   </span>
+<span class="nc" id="L154">           }</span>
+           
+           
+<span class="nc" id="L157">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

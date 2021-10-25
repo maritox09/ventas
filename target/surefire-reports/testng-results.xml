@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="32" passed="32" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2021-10-25T08:58:03 CST" name="Tercera-Entrega-Suit" finished-at="2021-10-25T08:58:03 CST" duration-ms="120">
+    <groups>
+      <group name="unitTest">
+        <method signature="UnitTestCliente.actualizarCliente()[pri:0, instance:UnitTesting.UnitTestCliente@5db90818]" name="actualizarCliente" class="UnitTesting.UnitTestCliente"/>
+        <method signature="UnitTestCliente.agregarCliente()[pri:0, instance:UnitTesting.UnitTestCliente@5db90818]" name="agregarCliente" class="UnitTesting.UnitTestCliente"/>
+        <method signature="UnitTestCliente.buscarCliente()[pri:0, instance:UnitTesting.UnitTestCliente@5db90818]" name="buscarCliente" class="UnitTesting.UnitTestCliente"/>
+        <method signature="UnitTestCliente.deleteById()[pri:0, instance:UnitTesting.UnitTestCliente@5db90818]" name="deleteById" class="UnitTesting.UnitTestCliente"/>
+        <method signature="UnitTestCliente.gettersYsettersInventario()[pri:0, instance:UnitTesting.UnitTestCliente@5db90818]" name="gettersYsettersInventario" class="UnitTesting.UnitTestCliente"/>
+        <method signature="UnitTestCliente.listarClientes()[pri:0, instance:UnitTesting.UnitTestCliente@5db90818]" name="listarClientes" class="UnitTesting.UnitTestCliente"/>
+        <method signature="UnitTestCliente.listarbyId()[pri:0, instance:UnitTesting.UnitTestCliente@5db90818]" name="listarbyId" class="UnitTesting.UnitTestCliente"/>
+        <method signature="UnitTestEmpleado.actualizarEmpleado()[pri:0, instance:UnitTesting.UnitTestEmpleado@3d50a3d9]" name="actualizarEmpleado" class="UnitTesting.UnitTestEmpleado"/>
+        <method signature="UnitTestEmpleado.agregarEmpleado()[pri:0, instance:UnitTesting.UnitTestEmpleado@3d50a3d9]" name="agregarEmpleado" class="UnitTesting.UnitTestEmpleado"/>
+        <method signature="UnitTestEmpleado.deleteById()[pri:0, instance:UnitTesting.UnitTestEmpleado@3d50a3d9]" name="deleteById" class="UnitTesting.UnitTestEmpleado"/>
+        <method signature="UnitTestEmpleado.gettersYsettersEmpleado()[pri:0, instance:UnitTesting.UnitTestEmpleado@3d50a3d9]" name="gettersYsettersEmpleado" class="UnitTesting.UnitTestEmpleado"/>
+        <method signature="UnitTestEmpleado.listarClientes()[pri:0, instance:UnitTesting.UnitTestEmpleado@3d50a3d9]" name="listarClientes" class="UnitTesting.UnitTestEmpleado"/>
+        <method signature="UnitTestEmpleado.listarbyId()[pri:0, instance:UnitTesting.UnitTestEmpleado@3d50a3d9]" name="listarbyId" class="UnitTesting.UnitTestEmpleado"/>
+        <method signature="UnitTestFabrica.actualizarFabrica()[pri:0, instance:UnitTesting.UnitTestFabrica@38f63756]" name="actualizarFabrica" class="UnitTesting.UnitTestFabrica"/>
+        <method signature="UnitTestFabrica.agregarFabrica()[pri:0, instance:UnitTesting.UnitTestFabrica@38f63756]" name="agregarFabrica" class="UnitTesting.UnitTestFabrica"/>
+        <method signature="UnitTestFabrica.buscarFabrica()[pri:0, instance:UnitTesting.UnitTestFabrica@38f63756]" name="buscarFabrica" class="UnitTesting.UnitTestFabrica"/>
+        <method signature="UnitTestFabrica.buscarMarca()[pri:0, instance:UnitTesting.UnitTestFabrica@38f63756]" name="buscarMarca" class="UnitTesting.UnitTestFabrica"/>
+        <method signature="UnitTestFabrica.deleteById()[pri:0, instance:UnitTesting.UnitTestFabrica@38f63756]" name="deleteById" class="UnitTesting.UnitTestFabrica"/>
+        <method signature="UnitTestFabrica.gettersYsettersFabrica()[pri:0, instance:UnitTesting.UnitTestFabrica@38f63756]" name="gettersYsettersFabrica" class="UnitTesting.UnitTestFabrica"/>
+        <method signature="UnitTestFabrica.listarFabricas()[pri:0, instance:UnitTesting.UnitTestFabrica@38f63756]" name="listarFabricas" class="UnitTesting.UnitTestFabrica"/>
+        <method signature="UnitTestInventario.buscarInventario()[pri:0, instance:UnitTesting.UnitTestInventario@3e0704e2]" name="buscarInventario" class="UnitTesting.UnitTestInventario"/>
+        <method signature="UnitTestInventario.gettersYsettersInventario()[pri:0, instance:UnitTesting.UnitTestInventario@3e0704e2]" name="gettersYsettersInventario" class="UnitTesting.UnitTestInventario"/>
+        <method signature="UnitTestInventario.listarInventarios()[pri:0, instance:UnitTesting.UnitTestInventario@3e0704e2]" name="listarInventarios" class="UnitTesting.UnitTestInventario"/>
+        <method signature="UnitTestInventario.listarbyId()[pri:0, instance:UnitTesting.UnitTestInventario@3e0704e2]" name="listarbyId" class="UnitTesting.UnitTestInventario"/>
+        <method signature="UnitTestMarca.agregarCliente()[pri:0, instance:UnitTesting.UnitTestMarca@5b32e0b1]" name="agregarCliente" class="UnitTesting.UnitTestMarca"/>
+        <method signature="UnitTestMarca.deletebyId()[pri:0, instance:UnitTesting.UnitTestMarca@5b32e0b1]" name="deletebyId" class="UnitTesting.UnitTestMarca"/>
+        <method signature="UnitTestMarca.gettersYsettersMarca()[pri:0, instance:UnitTesting.UnitTestMarca@5b32e0b1]" name="gettersYsettersMarca" class="UnitTesting.UnitTestMarca"/>
+        <method signature="UnitTestMarca.listarmarcas()[pri:0, instance:UnitTesting.UnitTestMarca@5b32e0b1]" name="listarmarcas" class="UnitTesting.UnitTestMarca"/>
+        <method signature="UnitTestPedidos.actualizaEstadoInventario()[pri:0, instance:UnitTesting.UnitTestPedidos@188ae8d2]" name="actualizaEstadoInventario" class="UnitTesting.UnitTestPedidos"/>
+        <method signature="UnitTestPedidos.buscarbyId()[pri:0, instance:UnitTesting.UnitTestPedidos@188ae8d2]" name="buscarbyId" class="UnitTesting.UnitTestPedidos"/>
+        <method signature="UnitTestPedidos.gettersYsettersPedidos()[pri:0, instance:UnitTesting.UnitTestPedidos@188ae8d2]" name="gettersYsettersPedidos" class="UnitTesting.UnitTestPedidos"/>
+        <method signature="UnitTestPedidos.listarPedidos()[pri:0, instance:UnitTesting.UnitTestPedidos@188ae8d2]" name="listarPedidos" class="UnitTesting.UnitTestPedidos"/>
+      </group> <!-- unitTest -->
+    </groups>
+    <test started-at="2021-10-25T08:58:03 CST" name="unitTest" finished-at="2021-10-25T08:58:03 CST" duration-ms="120">
+      <class name="UnitTesting.UnitTestEmpleado">
+        <test-method signature="actualizarEmpleado()[pri:0, instance:UnitTesting.UnitTestEmpleado@3d50a3d9]" started-at="2021-10-25T08:58:03 CST" name="actualizarEmpleado" description="Prueba actualizar Empleado" finished-at="2021-10-25T08:58:03 CST" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- actualizarEmpleado -->
+        <test-method signature="agregarEmpleado()[pri:0, instance:UnitTesting.UnitTestEmpleado@3d50a3d9]" started-at="2021-10-25T08:58:03 CST" name="agregarEmpleado" description="Prueba agregar nuevo Empleado" finished-at="2021-10-25T08:58:03 CST" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- agregarEmpleado -->
+        <test-method signature="deleteById()[pri:0, instance:UnitTesting.UnitTestEmpleado@3d50a3d9]" started-at="2021-10-25T08:58:03 CST" name="deleteById" description="Prueba eliminar Empleado" finished-at="2021-10-25T08:58:03 CST" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- deleteById -->
+        <test-method signature="gettersYsettersEmpleado()[pri:0, instance:UnitTesting.UnitTestEmpleado@3d50a3d9]" started-at="2021-10-25T08:58:03 CST" name="gettersYsettersEmpleado" description="Prueba métodos getter y setter de Empleado" finished-at="2021-10-25T08:58:03 CST" duration-ms="2" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- gettersYsettersEmpleado -->
+        <test-method signature="listarClientes()[pri:0, instance:UnitTesting.UnitTestEmpleado@3d50a3d9]" started-at="2021-10-25T08:58:03 CST" name="listarClientes" description="Prueba listar empleados" finished-at="2021-10-25T08:58:03 CST" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- listarClientes -->
+        <test-method signature="listarbyId()[pri:0, instance:UnitTesting.UnitTestEmpleado@3d50a3d9]" started-at="2021-10-25T08:58:03 CST" name="listarbyId" description="Prueba listar Empleado por ID" finished-at="2021-10-25T08:58:03 CST" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- listarbyId -->
+      </class> <!-- UnitTesting.UnitTestEmpleado -->
+      <class name="UnitTesting.UnitTestInventario">
+        <test-method signature="buscarInventario()[pri:0, instance:UnitTesting.UnitTestInventario@3e0704e2]" started-at="2021-10-25T08:58:03 CST" name="buscarInventario" description="Prueba buscar inventario" finished-at="2021-10-25T08:58:03 CST" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- buscarInventario -->
+        <test-method signature="listarInventarios()[pri:0, instance:UnitTesting.UnitTestInventario@3e0704e2]" started-at="2021-10-25T08:58:03 CST" name="listarInventarios" description="Prueba listar inventarios" finished-at="2021-10-25T08:58:03 CST" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- listarInventarios -->
+        <test-method signature="gettersYsettersInventario()[pri:0, instance:UnitTesting.UnitTestInventario@3e0704e2]" started-at="2021-10-25T08:58:03 CST" name="gettersYsettersInventario" description="Prueba métodos getter y setter de Inventario" finished-at="2021-10-25T08:58:03 CST" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- gettersYsettersInventario -->
+        <test-method signature="listarbyId()[pri:0, instance:UnitTesting.UnitTestInventario@3e0704e2]" started-at="2021-10-25T08:58:03 CST" name="listarbyId" description="Prueba busqueda del producto de cada inventario" finished-at="2021-10-25T08:58:03 CST" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- listarbyId -->
+      </class> <!-- UnitTesting.UnitTestInventario -->
+      <class name="UnitTesting.UnitTestFabrica">
+        <test-method signature="actualizarFabrica()[pri:0, instance:UnitTesting.UnitTestFabrica@38f63756]" started-at="2021-10-25T08:58:03 CST" name="actualizarFabrica" description="Prueba actualizar Fabrica" finished-at="2021-10-25T08:58:03 CST" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- actualizarFabrica -->
+        <test-method signature="agregarFabrica()[pri:0, instance:UnitTesting.UnitTestFabrica@38f63756]" started-at="2021-10-25T08:58:03 CST" name="agregarFabrica" description="Prueba agregar nueva Marca" finished-at="2021-10-25T08:58:03 CST" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- agregarFabrica -->
+        <test-method signature="buscarMarca()[pri:0, instance:UnitTesting.UnitTestFabrica@38f63756]" started-at="2021-10-25T08:58:03 CST" name="buscarMarca" description="Prueba buscar marca" finished-at="2021-10-25T08:58:03 CST" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- buscarMarca -->
+        <test-method signature="buscarFabrica()[pri:0, instance:UnitTesting.UnitTestFabrica@38f63756]" started-at="2021-10-25T08:58:03 CST" name="buscarFabrica" description="Prueba buscar fabrica" finished-at="2021-10-25T08:58:03 CST" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- buscarFabrica -->
+        <test-method signature="deleteById()[pri:0, instance:UnitTesting.UnitTestFabrica@38f63756]" started-at="2021-10-25T08:58:03 CST" name="deleteById" description="Prueba eliminar Fabrica" finished-at="2021-10-25T08:58:03 CST" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- deleteById -->
+        <test-method signature="gettersYsettersFabrica()[pri:0, instance:UnitTesting.UnitTestFabrica@38f63756]" started-at="2021-10-25T08:58:03 CST" name="gettersYsettersFabrica" description="Prueba métodos getter y setter de Fabrica" finished-at="2021-10-25T08:58:03 CST" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- gettersYsettersFabrica -->
+        <test-method signature="listarFabricas()[pri:0, instance:UnitTesting.UnitTestFabrica@38f63756]" started-at="2021-10-25T08:58:03 CST" name="listarFabricas" description="Prueba listar Fabricas" finished-at="2021-10-25T08:58:03 CST" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- listarFabricas -->
+      </class> <!-- UnitTesting.UnitTestFabrica -->
+      <class name="UnitTesting.UnitTestCliente">
+        <test-method signature="actualizarCliente()[pri:0, instance:UnitTesting.UnitTestCliente@5db90818]" started-at="2021-10-25T08:58:03 CST" name="actualizarCliente" description="Prueba actualizar Cliente" finished-at="2021-10-25T08:58:03 CST" duration-ms="26" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- actualizarCliente -->
+        <test-method signature="agregarCliente()[pri:0, instance:UnitTesting.UnitTestCliente@5db90818]" started-at="2021-10-25T08:58:03 CST" name="agregarCliente" description="Prueba agregar nuevo Cliente" finished-at="2021-10-25T08:58:03 CST" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- agregarCliente -->
+        <test-method signature="buscarCliente()[pri:0, instance:UnitTesting.UnitTestCliente@5db90818]" started-at="2021-10-25T08:58:03 CST" name="buscarCliente" description="Prueba buscar nuevo Cliente" finished-at="2021-10-25T08:58:03 CST" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- buscarCliente -->
+        <test-method signature="deleteById()[pri:0, instance:UnitTesting.UnitTestCliente@5db90818]" started-at="2021-10-25T08:58:03 CST" name="deleteById" description="Prueba eliminar Cliente" finished-at="2021-10-25T08:58:03 CST" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- deleteById -->
+        <test-method signature="gettersYsettersInventario()[pri:0, instance:UnitTesting.UnitTestCliente@5db90818]" started-at="2021-10-25T08:58:03 CST" name="gettersYsettersInventario" description="Prueba métodos getter y setter de Cliente" finished-at="2021-10-25T08:58:03 CST" duration-ms="5" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- gettersYsettersInventario -->
+        <test-method signature="listarClientes()[pri:0, instance:UnitTesting.UnitTestCliente@5db90818]" started-at="2021-10-25T08:58:03 CST" name="listarClientes" description="Prueba listar Cliente" finished-at="2021-10-25T08:58:03 CST" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- listarClientes -->
+        <test-method signature="listarbyId()[pri:0, instance:UnitTesting.UnitTestCliente@5db90818]" started-at="2021-10-25T08:58:03 CST" name="listarbyId" description="Prueba listar Cliente por ID" finished-at="2021-10-25T08:58:03 CST" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- listarbyId -->
+      </class> <!-- UnitTesting.UnitTestCliente -->
+      <class name="UnitTesting.UnitTestPedidos">
+        <test-method signature="actualizaEstadoInventario()[pri:0, instance:UnitTesting.UnitTestPedidos@188ae8d2]" started-at="2021-10-25T08:58:03 CST" name="actualizaEstadoInventario" description="Actualizar el estado de un inventario" finished-at="2021-10-25T08:58:03 CST" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- actualizaEstadoInventario -->
+        <test-method signature="buscarbyId()[pri:0, instance:UnitTesting.UnitTestPedidos@188ae8d2]" started-at="2021-10-25T08:58:03 CST" name="buscarbyId" description="Prueba buscar marca por ID" finished-at="2021-10-25T08:58:03 CST" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- buscarbyId -->
+        <test-method signature="gettersYsettersPedidos()[pri:0, instance:UnitTesting.UnitTestPedidos@188ae8d2]" started-at="2021-10-25T08:58:03 CST" name="gettersYsettersPedidos" description="Prueba métodos getter y setter de Pedidos" finished-at="2021-10-25T08:58:03 CST" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- gettersYsettersPedidos -->
+        <test-method signature="listarPedidos()[pri:0, instance:UnitTesting.UnitTestPedidos@188ae8d2]" started-at="2021-10-25T08:58:03 CST" name="listarPedidos" description="Prueba listar pedidos" finished-at="2021-10-25T08:58:03 CST" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- listarPedidos -->
+      </class> <!-- UnitTesting.UnitTestPedidos -->
+      <class name="UnitTesting.UnitTestMarca">
+        <test-method signature="agregarCliente()[pri:0, instance:UnitTesting.UnitTestMarca@5b32e0b1]" started-at="2021-10-25T08:58:03 CST" name="agregarCliente" description="Prueba agregar nueva Marca" finished-at="2021-10-25T08:58:03 CST" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- agregarCliente -->
+        <test-method signature="deletebyId()[pri:0, instance:UnitTesting.UnitTestMarca@5b32e0b1]" started-at="2021-10-25T08:58:03 CST" name="deletebyId" description="Prueba eliminar marca por ID" finished-at="2021-10-25T08:58:03 CST" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- deletebyId -->
+        <test-method signature="gettersYsettersMarca()[pri:0, instance:UnitTesting.UnitTestMarca@5b32e0b1]" started-at="2021-10-25T08:58:03 CST" name="gettersYsettersMarca" description="Prueba métodos getter y setter de Marca" finished-at="2021-10-25T08:58:03 CST" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- gettersYsettersMarca -->
+        <test-method signature="listarmarcas()[pri:0, instance:UnitTesting.UnitTestMarca@5b32e0b1]" started-at="2021-10-25T08:58:03 CST" name="listarmarcas" description="Prueba listar marcas" finished-at="2021-10-25T08:58:03 CST" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- listarmarcas -->
+      </class> <!-- UnitTesting.UnitTestMarca -->
+    </test> <!-- unitTest -->
+  </suite> <!-- Tercera-Entrega-Suit -->
+</testng-results>

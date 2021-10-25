@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ClienteDAO.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SistemaVentas</a> &gt; <a href="index.source.html" class="el_package">Modelo</a> &gt; <span class="el_source">ClienteDAO.java</span></div><h1>ClienteDAO.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Modelo;
+
+import Config.Conexion;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Clase ClienteDAO
+ * Contiene los metodos para acceder a la base de datos y aterrizarlos en la clase Cliente
+ * @author josue
+ */
+<span class="nc" id="L20">public class ClienteDAO {</span>
+
+<span class="nc" id="L22">       Conexion cn = new Conexion();</span>
+       Connection con;
+       PreparedStatement ps;
+       ResultSet rs;
+       int respuesta;
+        /**
+         * Variables para la conexión
+         */
+
+
+        /**
+         * Metodo para buscar un cliente por id
+         * @param id el id del cliente el cual se buscara en la base de datos
+         * @return Devuelve un Objeto Cliente si lo encontró, de no encontrarlo un objeto Cliente vacio
+         */
+        public Cliente buscar(int id){
+<span class="nc" id="L38">           Cliente c=new Cliente();</span>
+<span class="nc" id="L39">           String sql =&quot;select * from clientes inner join suscripciones on clientes.suscripcion=suscripciones.id where clientes.id=&quot;+id;</span>
+           try{
+<span class="nc" id="L41">               con=cn.conexion();</span>
+<span class="nc" id="L42">               ps=con.prepareStatement(sql);</span>
+<span class="nc" id="L43">               rs= ps.executeQuery();</span>
+<span class="nc bnc" id="L44" title="All 2 branches missed.">               while(rs.next()){</span>
+<span class="nc" id="L45">                   c.setNombre(rs.getString(&quot;nombre&quot;));</span>
+<span class="nc" id="L46">                   c.setNit(rs.getInt(&quot;nit&quot;));</span>
+<span class="nc" id="L47">                   c.setCorreo(rs.getString(&quot;email&quot;));</span>
+<span class="nc" id="L48">                   c.setCelular(rs.getInt(&quot;telefono&quot;));</span>
+<span class="nc" id="L49">                   c.setPatente(rs.getString(&quot;patente&quot;));</span>
+<span class="nc" id="L50">                   c.setSuscripcion(rs.getInt(&quot;suscripcion&quot;));</span>
+<span class="nc" id="L51">                   c.setId(rs.getInt(&quot;id&quot;));</span>
+<span class="nc" id="L52">                   c.setRango(rs.getString(&quot;nombretipo&quot;));</span>
+<span class="nc" id="L53">                   c.setDescuento(rs.getFloat(&quot;descuento&quot;));</span>
+               }
+<span class="nc" id="L55">           }catch(Exception e){</span>
+               
+<span class="nc" id="L57">           }</span>
+<span class="nc" id="L58">           return c;</span>
+       }
+
+        /**
+         * Metodo para listar todos los cliente
+         * @return Objeto Lista &lt;Cliente&gt; con todos los clientes que se encontraron
+         */
+       public List listar(){
+<span class="nc" id="L66">           String sql= &quot;select * from clientes inner join suscripciones on clientes.suscripcion=suscripciones.id ORDER BY clientes.id asc&quot;;</span>
+<span class="nc" id="L67">           List&lt;Cliente&gt; lista=new ArrayList&lt;&gt;();</span>
+           try{
+<span class="nc" id="L69">               con=cn.conexion();</span>
+<span class="nc" id="L70">               ps=con.prepareStatement(sql);</span>
+<span class="nc" id="L71">               rs= ps.executeQuery();</span>
+<span class="nc bnc" id="L72" title="All 2 branches missed.">               while(rs.next()){</span>
+<span class="nc" id="L73">                   Cliente cl = new Cliente();</span>
+<span class="nc" id="L74">                   cl.setNombre(rs.getString(&quot;nombre&quot;));</span>
+<span class="nc" id="L75">                   cl.setNit(rs.getInt(&quot;nit&quot;));</span>
+<span class="nc" id="L76">                   cl.setCorreo(rs.getString(&quot;email&quot;));</span>
+<span class="nc" id="L77">                   cl.setCelular(rs.getInt(&quot;telefono&quot;));</span>
+<span class="nc" id="L78">                   cl.setPatente(rs.getString(&quot;patente&quot;));</span>
+<span class="nc" id="L79">                   cl.setSuscripcion(rs.getInt(&quot;suscripcion&quot;));</span>
+<span class="nc" id="L80">                   cl.setId(rs.getInt(&quot;id&quot;));</span>
+<span class="nc" id="L81">                   cl.setRango(rs.getString(&quot;nombretipo&quot;));</span>
+<span class="nc" id="L82">                   cl.setDescuento(rs.getFloat(&quot;descuento&quot;));</span>
+<span class="nc" id="L83">                   lista.add(cl);</span>
+<span class="nc" id="L84">               }</span>
+<span class="nc" id="L85">           }catch(Exception e){   </span>
+<span class="nc" id="L86">           }</span>
+<span class="nc" id="L87">           return lista;</span>
+       }
+
+        /**
+         * Metodo para agregar un cliente
+         * @param cl el objeto cliente el cual se agregara a la base de datos
+         * @return int respuesta, 1 al agregar exitosamente el cliente, 0 de lo contrario
+         */
+       public int agregar(Cliente cl){
+<span class="nc" id="L96">           String sql=&quot;INSERT INTO clientes VALUES (?,?,?,?,?,?,?,default)&quot;;</span>
+           
+            try{
+<span class="nc" id="L99">               con=cn.conexion();</span>
+<span class="nc" id="L100">               ps=con.prepareStatement(sql);</span>
+<span class="nc" id="L101">               ps.setInt(1, cl.getId());</span>
+<span class="nc" id="L102">               ps.setString(2, cl.getNombre());</span>
+<span class="nc" id="L103">               ps.setInt(3, cl.getNit());</span>
+<span class="nc" id="L104">               ps.setString(4, cl.getCorreo());</span>
+<span class="nc" id="L105">               ps.setInt(5, cl.getCelular());</span>
+<span class="nc" id="L106">               ps.setInt(6, cl.getSuscripcion());</span>
+<span class="nc" id="L107">               ps.setString(7, cl.getPatente());</span>
+               
+<span class="nc" id="L109">               ps.executeUpdate();</span>
+<span class="nc" id="L110">            }catch(Exception i){   </span>
+<span class="nc" id="L111">           }</span>
+           
+<span class="nc" id="L113">           return respuesta;</span>
+       }
+       
+       public Cliente listarId(int id){
+<span class="nc" id="L117">           Cliente cl = new Cliente();</span>
+<span class="nc" id="L118">           String sql =&quot;select * from clientes inner join suscripciones on clientes.suscripcion=suscripciones.id where clientes.id=&quot;+id;</span>
+           try{
+<span class="nc" id="L120">               con=cn.conexion();</span>
+<span class="nc" id="L121">               ps=con.prepareStatement(sql);</span>
+<span class="nc" id="L122">               rs= ps.executeQuery();</span>
+<span class="nc bnc" id="L123" title="All 2 branches missed.">               while(rs.next()){</span>
+<span class="nc" id="L124">                   cl.setNombre(rs.getString(&quot;nombre&quot;));</span>
+<span class="nc" id="L125">                   cl.setNit(rs.getInt(&quot;nit&quot;));</span>
+<span class="nc" id="L126">                   cl.setCorreo(rs.getString(&quot;email&quot;));</span>
+<span class="nc" id="L127">                   cl.setCelular(rs.getInt(&quot;telefono&quot;));</span>
+<span class="nc" id="L128">                   cl.setPatente(rs.getString(&quot;patente&quot;));</span>
+<span class="nc" id="L129">                   cl.setSuscripcion(rs.getInt(&quot;suscripcion&quot;));</span>
+<span class="nc" id="L130">                   cl.setId(rs.getInt(&quot;id&quot;));</span>
+<span class="nc" id="L131">                   cl.setRango(rs.getString(&quot;nombretipo&quot;));</span>
+<span class="nc" id="L132">                   cl.setDescuento(rs.getFloat(&quot;descuento&quot;));</span>
+               }
+<span class="nc" id="L134">            }catch(Exception e){   </span>
+<span class="nc" id="L135">           }</span>
+<span class="nc" id="L136">           return cl;</span>
+       }
+
+    /**
+     * Metodo para actualizar un cliente
+     * @param cl el objeto Cliente el cual tendra el id y los datos para actualizar el objeto en la base de datos
+     * @return int respuesta, 1 al actualizar exitosamente el cliente, 0 de lo contrario
+     */
+       public int actualizar(Cliente cl){
+<span class="nc" id="L145">            String sql=&quot;UPDATE clientes SET nombre=?, nit=?, email=?, telefono=?, patente=?, suscripcion=? where ID=?&quot;;</span>
+           
+            try{
+<span class="nc" id="L148">               con=cn.conexion();</span>
+<span class="nc" id="L149">               ps=con.prepareStatement(sql);</span>
+<span class="nc" id="L150">               ps.setString(1, cl.getNombre());</span>
+<span class="nc" id="L151">               ps.setInt(2, cl.getNit());</span>
+<span class="nc" id="L152">               ps.setString(3, cl.getCorreo());</span>
+<span class="nc" id="L153">               ps.setInt(4, cl.getCelular());</span>
+<span class="nc" id="L154">               ps.setString(5, cl.getPatente());</span>
+<span class="nc" id="L155">               ps.setInt(6, cl.getSuscripcion());</span>
+<span class="nc" id="L156">               ps.setInt(7, cl.getId());</span>
+<span class="nc" id="L157">               ps.executeUpdate();</span>
+<span class="nc" id="L158">                respuesta=1;</span>
+<span class="nc" id="L159">            }catch(Exception i){</span>
+<span class="nc" id="L160">                respuesta=0;</span>
+<span class="nc" id="L161">           }     </span>
+           
+<span class="nc" id="L163">           return respuesta;</span>
+       }
+
+    /**
+     * Metodo para eliminar un cliente
+     * @param id id del registro que se borrara en la tabla clientes de base de datos
+     * @return int respuesta, 1 al eliminar exitosamente el cliente, 0 de lo contrario
+     */
+       public int delete(int id){
+<span class="nc" id="L172">           String sql =&quot;delete from clientes where ID=&quot;+id;</span>
+           try{
+<span class="nc" id="L174">               con=cn.conexion();</span>
+<span class="nc" id="L175">               ps=con.prepareStatement(sql);</span>
+<span class="nc" id="L176">               ps.executeUpdate();</span>
+<span class="nc" id="L177">               respuesta=1;</span>
+<span class="nc" id="L178">            }catch(Exception e){</span>
+<span class="nc" id="L179">               respuesta=0;</span>
+<span class="nc" id="L180">           }</span>
+
+<span class="nc" id="L182">           return respuesta;</span>
+           
+    }
+       
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>
