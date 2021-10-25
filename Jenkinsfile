@@ -6,7 +6,7 @@ pipeline{
    stages{
      stage('SCM Chekout'){
         steps{
-         git 'https://github.com/maritox09/ventas'
+         git 'https://www.github.com/maritox09/ventas'
         }
      }
       stage('Compile-Package'){
