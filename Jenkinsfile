@@ -24,7 +24,7 @@ pipeline{
      stage('Deploy container'){
         steps{
            sh 'cd target'
-           deploy adapters: [tomcat9(credentialsId: '004', path: '', url: 'http://196.168.5.193:8086/')], contextPath: 'rps', war: '**/*.war'
+           deploy adapters: [tomcat9(credentialsId: '004', path: '', url: 'http://192.168.5.193:8086/')], contextPath: 'rps', war: '**/*.war'
         }
      }
    }
