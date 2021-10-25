@@ -17,7 +17,7 @@ pipeline{
      stage('SonarQube.Analysis'){
         steps{
            withSonarQubeEnv('sonarqube') {
-              sh "mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=chema10"
+              sh "mvn clean sonar:sonar -Dsonar.login=admin -Dsonar.password=chema10"
             }
         }
     }
