@@ -1,5 +1,9 @@
 pipeline{
-   agent 'nodomaven'
+   agent {
+      node {
+        label 'nodomaven'
+         }
+      }
    tools{
       maven 'Maven'
    }
