@@ -23,7 +23,7 @@ pipeline{
      }
      stage('Deploy container'){
         steps{
-           sh 'mvn tomcat7:deploy'
+           deploy adapters: [tomcat9(credentialsId: '999', path: '', url: 'http://192.168.5.193:8888/')], contextPath: 'rps', war: '**/*.war'
         }
      }
    }
