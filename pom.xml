@@ -192,10 +192,10 @@
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
-                <version>2.2</version>
+                <version>2.0</version>
                 <configuration>
-                <port>8888</port>
-                <path>/</path>
+                    <url>http://localhost:8888/manager/text</url>
+                    <path>/rps</path>
                 </configuration>
             </plugin>
             <plugin>
