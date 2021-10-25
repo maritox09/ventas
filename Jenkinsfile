@@ -23,7 +23,7 @@ pipeline{
      }
      stage('Deploy container'){
         steps{
-           sh 'mvn -Dmaven.tomcat.port=8888 tomcat:deploy'
+           sh 'mvn tomcat7:deploy'
         }
      }
    }
