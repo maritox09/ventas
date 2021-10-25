@@ -7,7 +7,8 @@ pipeline{
      stage('SCM Chekout'){
         steps{
          git 'https://github.com/maritox09/ventas'
-        }
+         }
+      }
      stage('Deploy container'){
         steps{
            sh 'cd target'
