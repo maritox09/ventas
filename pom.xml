@@ -114,13 +114,13 @@
     <build>
         <plugins>
             <plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>tomcat-maven-plugin</artifactId>
-				<configuration>
-					<url>http://localhost:8888/manager</url>
-					<path>/rps</path>
-				</configuration>
-			</plugin>
+		<groupId>org.codehaus.mojo</groupId>
+		<artifactId>tomcat-maven-plugin</artifactId>
+			<configuration>
+				<url>http://192.168.5.193:8888/manager</url>
+				path>/rps</path>
+			</configuration>
+	</plugin>
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
