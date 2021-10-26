@@ -17,6 +17,10 @@ pipeline{
      }
      stage('SonarQube.Analysis'){
         steps{
+           script{
+              fallo=env.STAGE_NAME
+              echo "Repositorio"
+           }
            withSonarQubeEnv('sonarqube') {
               sh "mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=chema10"
             }
