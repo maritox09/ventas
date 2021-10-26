@@ -27,4 +27,15 @@ pipeline{
         }
      }
    }
+   post{
+      failure{
+         mail bcc: '',
+            body: "Project: ${currentBuild.currentResult} Job: ${env.JOB_NAME} URL: ${env.BUILD_URL} Buil Number: ${env.BUILD_NUMBER} Fallo: ${fallo}", 
+            cc: '', 
+            from: '', replyTo: '',
+            subject: 'Pipeline fail', 
+            to: 'jmyc9999@gmail.com'
+            slackSend(channel: "ventas", color: '#FF88F4', message: "Project: ${currentBuild.currentResult} Job: ${env.JOB_NAME} URL: ${env.BUILD_URL} Buil Number: ${env.BUILD_NUMBER} Fallo: ${fallo}")
+      }
+   }
 }
