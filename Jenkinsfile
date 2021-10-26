@@ -29,7 +29,7 @@ pipeline{
    }
    post{
       failure{
-         slackSend(channel: "ventas", color: '#FF88F4', message: "Project: ${currentBuild.currentResult} Job: ${env.JOB_NAME} URL: ${env.BUILD_URL} Buil Number: ${env.BUILD_NUMBER} Fallo: ${fallo}")
+         slackSend(channel: "general", color: '#FF88F4', message: "Project: ${currentBuild.currentResult} Job: ${env.JOB_NAME} URL: ${env.BUILD_URL} Buil Number: ${env.BUILD_NUMBER} Fallo: ${fallo}")
          mail bcc: '',
             body: "Project: ${currentBuild.currentResult} Job: ${env.JOB_NAME} URL: ${env.BUILD_URL} Buil Number: ${env.BUILD_NUMBER} Fallo: ${fallo}", 
             cc: '', 
