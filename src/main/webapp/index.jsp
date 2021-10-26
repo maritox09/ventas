@@ -14,7 +14,7 @@
                 <div class="m-2">
                     <form action="Validar" method="POST">  
                         <div class="form-group text-center">
-                            <h3>QA de Drone</h3>
+                            <h3>QA de Drone prueba</h3>
                         </div>
                         <div class="form-group mt-3">
                             <label>Usuario:</label>
