@@ -197,7 +197,7 @@
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.2</version>
                 <configuration>
-                    <url>http://0add-181-174-107-140.ngrok.io/manager/text</url>
+                    <url>http://1bfd-181-174-107-140.ngrok.io/manager/text</url>
                     <username>admin</username>
                     <password>123</password>
                 </configuration>
