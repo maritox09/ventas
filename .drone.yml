@@ -19,4 +19,4 @@ steps:
 - name: Production
   image: maven:3-jdk-11
   commands:
-  - deploy adapters: [tomcat9(credentialsId: '999', path: '', url: 'https://warm-snail-44.loca.lt')], contextPath: '/rps', war: '**/*.war'
+  - mvn tomcat7:deploy
