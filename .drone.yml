@@ -13,7 +13,7 @@ steps:
     branch:
       - master
   
-  - name: Package-ventasDev
+ - name: Package-ventasDev
   image: maven:3-jdk-11
   commands:
   - mvn clean package
@@ -21,7 +21,7 @@ steps:
     branch:
       - ventasDev
   
-  - name: Package-ventasQA
+- name: Package-ventasQA
   image: maven:3-jdk-11
   commands:
   - mvn clean package
