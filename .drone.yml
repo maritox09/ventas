@@ -39,11 +39,29 @@ steps:
   commands: 
   - mvn clean verify sonar:sonar -Dsonar.login=admin -Dsonar.password=chema10 -Dsonar.host.url=https://swift-robin-87.loca.lt
   
-- name: Production
+- name: Deploy
   image: maven:3-jdk-11
   commands:
   - mvn tomcat7:redeploy
-  
+
+- name: Email Notification
+  image: drillster/drone-email
+  settings:
+    from: jmyc9999@gmail.com
+    host: smtp.gmail.com
+    port: 465
+    username:
+       from_secret: email
+    password: 
+      from_secret: pass_email
+    subject: Pipeline 
+    recipients:
+        - jmyc9999@gmail.com
+  when:
+    status:
+    - success
+    - failure
+
 - name: Slack Notificacion
   image: plugins/slack
   settings:
