@@ -1,21 +1,44 @@
 kind: pipeline
 steps:
-- name: Package
+- name: Install
   image: maven:3-jdk-11
   commands:
-  - mvn package
+  - mvn clean install
+  
+- name: Package-master
+  image: maven:3-jdk-11
+  commands:
+  - mvn clean package
+  when:
+    branch:
+      - master
+  
+- name: Package-ventasDev
+  image: maven:3-jdk-11
+  commands:
+  - mvn clean package
+  when:
+    branch:
+      - ventasDev
+  
+- name: Package-ventasQA
+  image: maven:3-jdk-11
+  commands:
+  - mvn clean package
+  when:
+    branch:
+      - ventasQA
+  
 - name: Unit Testing
   image: maven:3-jdk-11
   commands:
   - mvn test
+  
 - name: SonarQube
   image: maven:3-jdk-11
   commands: 
-  - mvn clean verify sonar:sonar -Dsonar.login=admin -Dsonar.password=chema10 -Dsonar.host.url=https://witty-gecko-69.loca.lt
-- name: QualityGate
-  image: maven:3-jdk-11
-  commands:
-  - mvn clean verify sonar:sonar sonar-quality-gate:check -Dsonar.login=admin -Dsonar.password=chema10 -Dsonar.host.url=https://witty-gecko-69.loca.lt
+  - mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=chema10 -Dsonar.host.url=https://swift-robin-87.loca.lt
+  
 - name: Production
   image: maven:3-jdk-11
   commands:
