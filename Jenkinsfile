@@ -1,3 +1,4 @@
+def fallo = ''
 pipeline{
    agent any
    tools{
